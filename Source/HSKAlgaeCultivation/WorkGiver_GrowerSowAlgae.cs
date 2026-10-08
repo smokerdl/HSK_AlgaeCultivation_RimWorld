@@ -93,16 +93,25 @@ namespace HSKAlgaeCultivation
                     !thing.IsForbidden(pawn) &&
                     pawn.AllowedArea != null ? pawn.AllowedArea[thing.Position] : true;
 
-                Thing seed = GenClosest.ClosestThingReachable(
-                    c,
-                    map,
-                    ThingRequest.ForDef(seedDef),
-                    PathEndMode.ClosestTouch,
-                    TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn),
-                    9999f,
-                    validator);
+                Thing seed = null;
+                var seedThings = map.listerThings.ThingsOfDef(seedDef);
+                for (int i = 0; i < seedThings.Count; i++)
+                {
+                    Thing candidate = seedThings[i];
+                    if (candidate.IsForbidden(pawn))
+                        continue;
+                    if (pawn.AllowedArea != null && !pawn.AllowedArea[candidate.Position])
+                        continue;
+                    if (!pawn.CanReach(candidate, PathEndMode.ClosestTouch, Danger.Deadly))
+                        continue;
+                    if (!ReservationUtility.CanReserve(pawn, candidate, 1))
+                        continue;
 
-                if (seed == null || !ReservationUtility.CanReserve(pawn, seed, 1))
+                    seed = candidate;
+                    break;
+                }
+
+                if (seed == null)
                     return null;
 
                 return new Job(sowWithSeeds, c, seed)
@@ -112,7 +121,9 @@ namespace HSKAlgaeCultivation
                 };
             }
 
-            return JobMaker.MakeJob(JobDefOf.Sow, c);
+            Job job = JobMaker.MakeJob(JobDefOf.Sow, c);
+            job.plantDefToSow = wantedPlantDef;
+            return job;
         }
     }
 }
