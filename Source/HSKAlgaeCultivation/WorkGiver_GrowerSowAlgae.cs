@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
@@ -89,18 +88,12 @@ namespace HSKAlgaeCultivation
 
             if (seedDef != null && sowWithSeeds != null)
             {
-                Predicate<Thing> validator = thing =>
-                    !thing.IsForbidden(pawn) &&
-                    pawn.AllowedArea != null ? pawn.AllowedArea[thing.Position] : true;
-
                 Thing seed = null;
                 var seedThings = map.listerThings.ThingsOfDef(seedDef);
                 for (int i = 0; i < seedThings.Count; i++)
                 {
                     Thing candidate = seedThings[i];
                     if (candidate.IsForbidden(pawn))
-                        continue;
-                    if (pawn.AllowedArea != null && !pawn.AllowedArea[candidate.Position])
                         continue;
                     if (!pawn.CanReach(candidate, PathEndMode.ClosestTouch, Danger.Deadly))
                         continue;
