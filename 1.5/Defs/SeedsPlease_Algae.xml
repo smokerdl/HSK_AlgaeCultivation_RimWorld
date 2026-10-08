@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Optional integration: this entire Def is ignored unless SeedsPlease is active. -->
+  <SeedsPlease.SeedDef MayRequire="notfood.seedsplease" ParentName="SeedBase">
+    <defName>Seed_Algae</defName>
+    <label>algae seeds</label>
+    <sources>
+      <li>PlantAlgae</li>
+    </sources>
+    <graphicData>
+      <texPath>Things/Item/Seeds/Seeds</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2</MarketValue>
+    </statBases>
+  </SeedsPlease.SeedDef>
+</Defs>

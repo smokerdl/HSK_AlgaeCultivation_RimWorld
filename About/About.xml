@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>HSK Algae Cultivation</name>
+  <author>smokerdl</author>
+  <packageId>smokerdl.hsk.algaecultivation</packageId>
+  <url>https://github.com/skyarkhangel/Hardcore-SK</url>
+  <supportedVersions>
+    <li>1.5</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>skyarkhangel.HSK</packageId>
+      <displayName>Hardcore SK</displayName>
+      <downloadUrl>https://github.com/skyarkhangel/Hardcore-SK</downloadUrl>
+    </li>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>skyarkhangel.HSK</li>
+    <li>brrainz.harmony</li>
+    <li>notfood.seedsplease</li>
+  </loadAfter>
+  <description>Добавляет в Hardcore SK отдельную водорослевую зону выращивания. Позволяет выращивать PlantAlgae на мелководье, подвижном мелководье, воде по грудь с течением и болоте. При активном SeedsPlease автоматически добавляются семена водорослей; без SeedsPlease водоросли выращиваются без семян.</description>
+</ModMetaData>
