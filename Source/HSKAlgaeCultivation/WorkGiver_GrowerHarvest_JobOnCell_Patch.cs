@@ -1,0 +1,59 @@
+using HarmonyLib;
+using RimWorld;
+using Verse;
+
+namespace HSKAlgaeCultivation
+{
+    [HarmonyPatch(typeof(WorkGiver_GrowerHarvest), nameof(WorkGiver_GrowerHarvest.HasJobOnCell))]
+    public static class WorkGiver_GrowerHarvest_HasJobOnCell_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(Pawn pawn, IntVec3 c, bool forced, ref bool __result)
+        {
+            Zone_GrowingAlgae zone = c.GetZone(pawn.Map) as Zone_GrowingAlgae;
+            if (zone == null)
+                return true;
+
+            Plant plant = c.GetPlant(pawn.Map);
+            __result = CanHarvestAlgae(pawn, c, zone, forced, plant);
+            return false;
+        }
+
+        internal static bool CanHarvestAlgae(
+            Pawn pawn,
+            IntVec3 c,
+            Zone_GrowingAlgae zone,
+            bool forced,
+            Plant plant)
+        {
+            return zone.allowCut &&
+                   plant != null &&
+                   plant.def == AlgaeDefOf.PlantAlgae &&
+                   !plant.IsForbidden(pawn) &&
+                   plant.HarvestableNow &&
+                   plant.LifeStage == PlantLifeStage.Mature &&
+                   PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) &&
+                   pawn.CanReserve(plant, 1, -1, null, forced);
+        }
+    }
+
+    [HarmonyPatch(typeof(WorkGiver_GrowerHarvest), nameof(WorkGiver_GrowerHarvest.JobOnCell))]
+    public static class WorkGiver_GrowerHarvest_JobOnCell_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(Pawn pawn, IntVec3 c, bool forced, ref Job __result)
+        {
+            Zone_GrowingAlgae zone = c.GetZone(pawn.Map) as Zone_GrowingAlgae;
+            if (zone == null)
+                return true;
+
+            Plant plant = c.GetPlant(pawn.Map);
+            if (WorkGiver_GrowerHarvest_HasJobOnCell_Patch.CanHarvestAlgae(pawn, c, zone, forced, plant))
+                __result = new Job(JobDefOf.Harvest, plant);
+            else
+                __result = null;
+
+            return false;
+        }
+    }
+}
