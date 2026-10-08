@@ -7,7 +7,6 @@ namespace HSKAlgaeCultivation
 {
     public class Zone_GrowingAlgae : Zone_Growing, IPlantToGrowSettable
     {
-        public bool allowSow = true;
         public bool allowCut = true;
 
         private static readonly List<Color> ZoneColors = new List<Color>();
@@ -42,7 +41,6 @@ namespace HSKAlgaeCultivation
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref allowSow, "allowSow", true);
             Scribe_Values.Look(ref allowCut, "allowCut", true);
         }
 
