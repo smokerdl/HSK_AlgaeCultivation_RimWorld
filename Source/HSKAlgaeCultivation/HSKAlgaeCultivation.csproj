@@ -15,6 +15,10 @@
     <HarmonyPath Condition="'$(HarmonyPath)' == ''">$(RimWorldDir)Mods\Core_SK\Assemblies\0Harmony.dll</HarmonyPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(RimWorldVersion)' == '1.6'">
+    <DefineConstants>$(DefineConstants);RIMWORLD_1_6</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
