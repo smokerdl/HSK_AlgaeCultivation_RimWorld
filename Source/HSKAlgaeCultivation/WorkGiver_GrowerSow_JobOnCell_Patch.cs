@@ -25,10 +25,16 @@ namespace HSKAlgaeCultivation
             if (!zone.allowSow || c.IsForbidden(pawn))
                 return null;
 
+            ThingDef plantDef = AlgaeDefOf.PlantAlgae;
+
+#if RIMWORLD_1_6
+            if (!PlantUtility.GrowthSeasonNow(c, pawn.Map, plantDef))
+                return null;
+#else
             if (!PlantUtility.GrowthSeasonNow(c, pawn.Map, true))
                 return null;
+#endif
 
-            ThingDef plantDef = AlgaeDefOf.PlantAlgae;
             List<Thing> thingList = c.GetThingList(pawn.Map);
 
             for (int i = 0; i < thingList.Count; i++)
