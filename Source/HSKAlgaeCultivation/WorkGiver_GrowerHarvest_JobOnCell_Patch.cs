@@ -1,6 +1,7 @@
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace HSKAlgaeCultivation
 {
@@ -15,13 +16,12 @@ namespace HSKAlgaeCultivation
                 return true;
 
             Plant plant = c.GetPlant(pawn.Map);
-            __result = CanHarvestAlgae(pawn, c, zone, forced, plant);
+            __result = CanHarvestAlgae(pawn, zone, forced, plant);
             return false;
         }
 
         internal static bool CanHarvestAlgae(
             Pawn pawn,
-            IntVec3 c,
             Zone_GrowingAlgae zone,
             bool forced,
             Plant plant)
@@ -32,7 +32,7 @@ namespace HSKAlgaeCultivation
                    !plant.IsForbidden(pawn) &&
                    plant.HarvestableNow &&
                    plant.LifeStage == PlantLifeStage.Mature &&
-                   PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) &&
+                   plant.CanYieldNow() &&
                    pawn.CanReserve(plant, 1, -1, null, forced);
         }
     }
@@ -48,8 +48,8 @@ namespace HSKAlgaeCultivation
                 return true;
 
             Plant plant = c.GetPlant(pawn.Map);
-            if (WorkGiver_GrowerHarvest_HasJobOnCell_Patch.CanHarvestAlgae(pawn, c, zone, forced, plant))
-                __result = new Job(JobDefOf.Harvest, plant);
+            if (WorkGiver_GrowerHarvest_HasJobOnCell_Patch.CanHarvestAlgae(pawn, zone, forced, plant))
+                __result = JobMaker.MakeJob(JobDefOf.Harvest, plant);
             else
                 __result = null;
 
