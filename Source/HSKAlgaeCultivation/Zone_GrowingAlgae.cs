@@ -7,8 +7,6 @@ namespace HSKAlgaeCultivation
 {
     public class Zone_GrowingAlgae : Zone_Growing, IPlantToGrowSettable
     {
-        public bool allowCut = true;
-
         private static readonly List<Color> ZoneColors = new List<Color>();
         private static int nextColorIndex;
 
@@ -23,7 +21,7 @@ namespace HSKAlgaeCultivation
         public Zone_GrowingAlgae(ZoneManager zoneManager)
             : base(zoneManager)
         {
-            label = zoneManager.NewZoneName("HSKAlgaeCultivation_ZoneLabel".Translate());
+            label = "HSKAlgaeCultivation_ZoneLabel".Translate();
         }
 
         private static Color NextAlgaeZoneColor()
@@ -41,7 +39,6 @@ namespace HSKAlgaeCultivation
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref allowCut, "allowCut", true);
         }
 
         public override string GetInspectString()
@@ -62,15 +59,6 @@ namespace HSKAlgaeCultivation
         {
             foreach (Gizmo gizmo in base.GetGizmos())
                 yield return gizmo;
-
-            yield return new Command_Toggle
-            {
-                defaultLabel = "CommandAllowCut".Translate(),
-                defaultDesc = "CommandAllowCutDesc".Translate(),
-                icon = Designator_PlantsCut.IconTex,
-                isActive = () => allowCut,
-                toggleAction = () => allowCut = !allowCut
-            };
         }
 
         public override IEnumerable<Gizmo> GetZoneAddGizmos()
@@ -78,17 +66,17 @@ namespace HSKAlgaeCultivation
             yield return DesignatorUtility.FindAllowedDesignator<Designator_AlgaeGrowingZone_Expand>();
         }
 
-        public ThingDef GetPlantDefToGrow()
+        public new ThingDef GetPlantDefToGrow()
         {
             return AlgaeDefOf.PlantAlgae;
         }
 
-        public void SetPlantDefToGrow(ThingDef plantDef)
+        public new void SetPlantDefToGrow(ThingDef plantDef)
         {
             // The zone is intentionally restricted to HSK's algae crop.
         }
 
-        public bool CanAcceptSowNow()
+        public new bool CanAcceptSowNow()
         {
             return allowSow;
         }
