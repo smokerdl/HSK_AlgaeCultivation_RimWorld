@@ -36,11 +36,6 @@ namespace HSKAlgaeCultivation
             return result;
         }
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-        }
-
         public override string GetInspectString()
         {
             return "HSKAlgaeCultivation_ZoneInspect".Translate(AlgaeDefOf.PlantAlgae.LabelCap);
@@ -53,12 +48,6 @@ namespace HSKAlgaeCultivation
             {
                 Designator_PlantsHarvestWood.PossiblyWarnPlayerImportantPlantDesignateCut(thing);
             }
-        }
-
-        public override IEnumerable<Gizmo> GetGizmos()
-        {
-            foreach (Gizmo gizmo in base.GetGizmos())
-                yield return gizmo;
         }
 
         public override IEnumerable<Gizmo> GetZoneAddGizmos()
