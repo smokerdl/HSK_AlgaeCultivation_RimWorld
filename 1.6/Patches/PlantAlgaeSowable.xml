@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- PlantAlgae is an HSK plant but does not expose a vanilla sow tag by default.
+       Adding Ground makes it discoverable by the grow-zone crop selector.
+       The custom sow workgiver still validates the aquatic zone and selected crop. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="PlantAlgae"]/plant</xpath>
+    <value>
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+    </value>
+  </Operation>
+</Patch>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Require both SeedsPlease and Odyssey. HSK does not currently define
+       a seed item for the vanilla Odyssey Reeds plant. -->
+  <SeedsPlease.SeedDef MayRequire="notfood.SeedsPlease,Ludeon.RimWorld.Odyssey" ParentName="SeedBase">
+    <defName>Seed_Reeds</defName>
+    <label>reeds seeds</label>
+    <sources>
+      <li>Plant_Reeds</li>
+    </sources>
+    <graphicData>
+      <texPath>Things/Item/Seeds/Seeds</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2</MarketValue>
+    </statBases>
+  </SeedsPlease.SeedDef>
+</Defs>
