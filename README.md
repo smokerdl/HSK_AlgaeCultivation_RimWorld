@@ -2,13 +2,15 @@
 
 A small add-on for Hardcore SK (HSK). The active RimWorld 1.6 version provides a dedicated **Aquatic Crop Zone** for HSK algae and Odyssey reeds.
 
-**Game versions:** the included RimWorld 1.5 build is a frozen legacy snapshot. New features and active testing target RimWorld 1.6 with Odyssey enabled.
+**Game versions:** the included RimWorld 1.5 build is a frozen legacy snapshot. New features and active testing target RimWorld 1.6.
 
 ## Features
 
 - Draw the Aquatic Crop Zone on the mod's supported water and marsh terrain.
 - Select between HSK's existing `PlantAlgae` and Odyssey's `Plant_Reeds` using the zone's crop selector.
 - Automatic and forced sowing, plus harvesting for supported water crops.
+- The active 1.6 version makes Odyssey reeds cultivable for hay: harvest begins at 33% growth and yields 6 Hay at full growth.
+- The reeds patch is applied only when Odyssey is active, so algae cultivation remains usable without that DLC.
 - Optional SeedsPlease integration, including seeds for algae and reeds.
 - Prebuilt assemblies are included for normal play; players do not need to compile the mod.
 
@@ -33,4 +35,4 @@ For the manual in Russian, see [README_RU.md](README_RU.md).
 
 ## Validation
 
-GitHub Actions validates XML syntax, required files for the active and legacy folders, and localization keys. Static checks do not replace an in-game test after C# code or DLL changes.
+GitHub Actions validates XML syntax, required files for the active and legacy folders, and localization keys. Static checks do not replace an in-game test after code or DLL changes.
