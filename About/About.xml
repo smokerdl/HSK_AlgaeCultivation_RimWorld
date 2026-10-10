@@ -3,7 +3,7 @@
   <name>HSK Algae Cultivation</name>
   <author>smokerdl</author>
   <packageId>smokerdl.hsk.algaecultivation</packageId>
-  <url>https://github.com/skyarkhangel/Hardcore-SK</url>
+  <url>https://github.com/smokerdl/HSK_AlgaeCultivation_RimWorld</url>
   <supportedVersions>
     <li>1.5</li>
     <li>1.6</li>
@@ -26,5 +26,5 @@
     <li>brrainz.harmony</li>
     <li>notfood.seedsplease</li>
   </loadAfter>
-  <description>Добавляет в Hardcore SK отдельную водорослевую зону выращивания. Позволяет выращивать PlantAlgae на мелководье, подвижном мелководье, воде по грудь с течением и болоте. При активном SeedsPlease автоматически добавляются семена водорослей; без SeedsPlease водоросли выращиваются без семян.</description>
+  <description>Adds a dedicated algae cultivation zone for Hardcore SK. Supports PlantAlgae on shallow water, moving shallow water, chest-deep moving water, and marsh. SeedsPlease is optional and enables algae seeds.</description>
 </ModMetaData>
