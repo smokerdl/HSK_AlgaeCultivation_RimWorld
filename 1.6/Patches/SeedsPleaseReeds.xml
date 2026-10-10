@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Seed_Reeds is an add-on Def: neither vanilla Odyssey nor HSK defines it.
+       Register it only when both Odyssey and SeedsPlease are loaded. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Ludeon.RimWorld.Odyssey</li>
+    </mods>
+    <match Class="PatchOperationFindMod">
+      <mods>
+        <li>notfood.SeedsPlease</li>
+      </mods>
+      <match Class="PatchOperationAdd">
+        <xpath>/Defs</xpath>
+        <value>
+          <SeedsPlease.SeedDef ParentName="SeedBase">
+            <defName>Seed_Reeds</defName>
+            <label>reeds seeds</label>
+            <sources>
+              <li>Plant_Reeds</li>
+            </sources>
+            <graphicData>
+              <texPath>Things/Item/Seeds/Seeds</texPath>
+              <graphicClass>Graphic_StackCount</graphicClass>
+            </graphicData>
+            <statBases>
+              <MarketValue>2</MarketValue>
+            </statBases>
+          </SeedsPlease.SeedDef>
+        </value>
+      </match>
+    </match>
+  </Operation>
+</Patch>
