@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <HSKAlgaeCultivation_ZoneLabel>Algae Cultivation</HSKAlgaeCultivation_ZoneLabel>
-  <HSKAlgaeCultivation_ZoneDesc>An area for growing algae in shallow water, moving shallow water, chest-deep moving water, and marsh.</HSKAlgaeCultivation_ZoneDesc>
+  <HSKAlgaeCultivation_ZoneLabel>Aquatic Crop Zone</HSKAlgaeCultivation_ZoneLabel>
+  <HSKAlgaeCultivation_ZoneDesc>A zone for growing HSK algae and Odyssey reeds on supported water and marsh terrain. Reeds can only be planted where their terrain requirements allow.</HSKAlgaeCultivation_ZoneDesc>
   <HSKAlgaeCultivation_ZoneInspect>Crop: {0}</HSKAlgaeCultivation_ZoneInspect>
 </LanguageData>
