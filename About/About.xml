@@ -26,5 +26,5 @@
     <li>brrainz.harmony</li>
     <li>notfood.seedsplease</li>
   </loadAfter>
-  <description>Adds a dedicated algae cultivation zone for Hardcore SK. Supports PlantAlgae on shallow water, moving shallow water, chest-deep moving water, and marsh. SeedsPlease is optional and enables algae seeds.</description>
+  <description>RimWorld 1.5 retains the original algae cultivation zone. The active RimWorld 1.6 version adds a selectable aquatic crop zone for HSK PlantAlgae and Odyssey Plant_Reeds, with reeds yielding Hay. SeedsPlease is optional.</description>
 </ModMetaData>
