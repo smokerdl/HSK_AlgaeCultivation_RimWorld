@@ -28,6 +28,7 @@ namespace HSKAlgaeCultivation
         {
             return zone.allowCut &&
                    plant != null &&
+                   plant.def == zone.GetPlantDefToGrow() &&
                    Zone_GrowingAlgae.IsSupportedCrop(plant.def) &&
                    !plant.IsForbidden(pawn) &&
                    plant.HarvestableNow &&
