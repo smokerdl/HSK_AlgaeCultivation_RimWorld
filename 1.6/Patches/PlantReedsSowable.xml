@@ -1,24 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Reeds are a wild Odyssey plant by default. Only change it when the DLC is active,
-       so algae cultivation remains usable without Odyssey. -->
+  <!-- Reeds are added by Odyssey. Apply changes only when the DLC is active.
+       Each harvest property is replaced if present, or added otherwise. This
+       also coexists with HSK builds or other mods that already define a yield. -->
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>Ludeon.RimWorld.Odyssey</li>
     </mods>
-    <match>
-      <Operation Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
-        <value>
-          <sowTags>
-            <li>Ground</li>
-          </sowTags>
-          <harvestMinGrowth>0.33</harvestMinGrowth>
-          <harvestTag>Standard</harvestTag>
-          <harvestedThingDef>Hay</harvestedThingDef>
-          <harvestYield>6</harvestYield>
-        </value>
-      </Operation>
+    <match Class="PatchOperationSequence">
+      <success>Normal</success>
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/sowTags</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/sowTags</xpath>
+            <value>
+              <li>Ground</li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+            <value>
+              <sowTags>
+                <li>Ground</li>
+              </sowTags>
+            </value>
+          </nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestMinGrowth</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestMinGrowth</xpath>
+            <value>
+              <harvestMinGrowth>0.33</harvestMinGrowth>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+            <value>
+              <harvestMinGrowth>0.33</harvestMinGrowth>
+            </value>
+          </nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestTag</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestTag</xpath>
+            <value>
+              <harvestTag>Standard</harvestTag>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+            <value>
+              <harvestTag>Standard</harvestTag>
+            </value>
+          </nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestedThingDef</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestedThingDef</xpath>
+            <value>
+              <harvestedThingDef>Hay</harvestedThingDef>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+            <value>
+              <harvestedThingDef>Hay</harvestedThingDef>
+            </value>
+          </nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestYield</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/harvestYield</xpath>
+            <value>
+              <harvestYield>6</harvestYield>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+            <value>
+              <harvestYield>6</harvestYield>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
     </match>
   </Operation>
 </Patch>
