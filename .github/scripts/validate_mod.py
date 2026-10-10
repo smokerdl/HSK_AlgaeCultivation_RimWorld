@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
 VERSIONS = ("1.5", "1.6")
+SUPPORTED_VERSIONS = {"1.6"}
 REQUIRED_FILES = (
     "Assemblies/HSKAlgaeCultivation.dll",
     "Defs/SeedsPlease_Algae.xml",
@@ -52,13 +53,16 @@ if metadata is not None:
     supported = {
         node.text for node in metadata.findall("./supportedVersions/li") if node.text
     }
-    if supported != set(VERSIONS):
-        fail(f"About/About.xml supportedVersions should be exactly {VERSIONS}, got {sorted(supported)}")
+    if supported != SUPPORTED_VERSIONS:
+        fail(
+            "About/About.xml supportedVersions should be exactly "
+            f"{sorted(SUPPORTED_VERSIONS)}, got {sorted(supported)}"
+        )
     package_id = metadata.findtext("./packageId")
     if package_id != "smokerdl.hsk.algaecultivation":
         fail(f"Unexpected packageId in About/About.xml: {package_id!r}")
 
-# The 1.5 folder is retained as a legacy snapshot; new features target 1.6.
+# The 1.5 folder is retained as a frozen legacy snapshot; active development targets 1.6.
 for version in VERSIONS:
     version_root = ROOT / version
     required_files = list(REQUIRED_FILES)
@@ -113,4 +117,4 @@ if ERRORS:
         print(f" - {error}")
     sys.exit(1)
 
-print("Repository validation passed: XML parsed, legacy/active folders checked, active translations are consistent.")
+print("Repository validation passed: active 1.6 files and translations checked; legacy 1.5 snapshot retained.")
