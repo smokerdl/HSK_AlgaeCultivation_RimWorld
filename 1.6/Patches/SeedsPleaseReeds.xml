@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Add the optional SeedsPlease seed only if both its mod and Odyssey exist. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Ludeon.RimWorld.Odyssey</li>
+    </mods>
+    <match Class="PatchOperationFindMod">
+      <mods>
+        <li>notfood.seedsplease</li>
+      </mods>
+      <match Class="PatchOperationAdd">
+        <xpath>/Defs</xpath>
+        <value>
+          <SeedsPlease.SeedDef ParentName="SeedBase">
+            <defName>Seed_Reeds</defName>
+            <label>reeds seeds</label>
+            <sources>
+              <li>Plant_Reeds</li>
+            </sources>
+            <graphicData>
+              <texPath>Things/Item/Seeds/Seeds</texPath>
+              <graphicClass>Graphic_StackCount</graphicClass>
+            </graphicData>
+            <statBases>
+              <MarketValue>2</MarketValue>
+            </statBases>
+          </SeedsPlease.SeedDef>
+        </value>
+      </match>
+    </match>
+  </Operation>
+</Patch>
