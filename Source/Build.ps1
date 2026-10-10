@@ -8,8 +8,8 @@ if ([string]::IsNullOrWhiteSpace($RimWorldVersion)) {
     $RimWorldVersion = '1.6'
 }
 
-if ($RimWorldVersion -notin @('1.5', '1.6')) {
-    throw "Unsupported RimWorld version '$RimWorldVersion'. Set RIMWORLD_VERSION to 1.5 or 1.6."
+if ($RimWorldVersion -ne '1.6') {
+    throw "This development branch only builds RimWorld 1.6. The existing 1.5 DLL is a frozen legacy snapshot and will not be rebuilt."
 }
 
 $sourceDir = $PSScriptRoot
