@@ -7,7 +7,7 @@
     </mods>
     <match Class="PatchOperationFindMod">
       <mods>
-        <li>notfood.seedsplease</li>
+        <li>notfood.SeedsPlease</li>
       </mods>
       <match Class="PatchOperationAdd">
         <xpath>/Defs</xpath>
