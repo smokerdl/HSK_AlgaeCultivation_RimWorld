@@ -16,6 +16,11 @@ REQUIRED_FILES = (
     "Patches/GrowZonePatch.xml",
     "Patches/PlantAlgaeSowable.xml",
 )
+ACTIVE_REQUIRED_FILES = (
+    "Defs/SeedsPlease_Reeds.xml",
+    "Languages/English/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
+    "Languages/Russian/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
+)
 LANGUAGES = ("English", "Russian")
 ERRORS = []
 
@@ -54,40 +59,35 @@ if metadata is not None:
 # The 1.5 folder is retained as a legacy snapshot; new features target 1.6.
 for version in VERSIONS:
     version_root = ROOT / version
-    for relative in REQUIRED_FILES:
+    required_files = list(REQUIRED_FILES)
+    if version == "1.6":
+        required_files.extend(ACTIVE_REQUIRED_FILES)
+    for relative in required_files:
         path = version_root / relative
         if not path.is_file():
             fail(f"Missing required file: {path.relative_to(ROOT)}")
         elif path.suffix == ".xml":
             parse_xml(path)
 
-# Translation keys must match within each version and between locales.
+# Translation keys must match between English and Russian within each version.
 translation_keys = {}
-for language in LANGUAGES:
-    keys_by_version = {}
-    for version in VERSIONS:
+for version in VERSIONS:
+    keys_by_language = {}
+    for language in LANGUAGES:
         path = ROOT / version / "Languages" / language / "Keyed" / "HSKAlgaeCultivation.xml"
         root = parse_xml(path) if path.is_file() else None
         if root is not None:
-            keys = {child.tag for child in list(root)}
-            keys_by_version[version] = keys
-    for version, keys in keys_by_version.items():
-        if keys != keys_by_version.get("1.5", keys):
-            fail(f"Translation keys differ across version folders for {language}: {version}={sorted(keys)}, 1.5={sorted(keys_by_version.get('1.5', set()))}")
-    if "1.6" in keys_by_version:
-        translation_keys[language] = keys_by_version["1.6"]
-    elif "1.5" in keys_by_version:
-        translation_keys[language] = keys_by_version["1.5"]
+            keys_by_language[language] = {child.tag for child in list(root)}
+    if "English" in keys_by_language and "Russian" in keys_by_language:
+        if keys_by_language["English"] != keys_by_language["Russian"]:
+            fail(
+                f"English/Russian translation keys differ for RimWorld {version}: "
+                f"English-only={sorted(keys_by_language['English'] - keys_by_language['Russian'])}; "
+                f"Russian-only={sorted(keys_by_language['Russian'] - keys_by_language['English'])}"
+            )
+    translation_keys[version] = keys_by_language
 
-if "English" in translation_keys and "Russian" in translation_keys:
-    if translation_keys["English"] != translation_keys["Russian"]:
-        fail(
-            "English and Russian translation keys differ: "
-            f"English-only={sorted(translation_keys['English'] - translation_keys['Russian'])}; "
-            f"Russian-only={sorted(translation_keys['Russian'] - translation_keys['English'])}"
-        )
-
-# Ensure translation keys used by the C# source are defined in every active locale.
+# New C# translation keys must exist in the active 1.6 translations.
 source_dir = ROOT / "Source" / "HSKAlgaeCultivation"
 translate_pattern = re.compile(r'"(HSKAlgaeCultivation_[A-Za-z0-9_]+)"\s*\.Translate')
 source_keys = set()
@@ -97,10 +97,11 @@ for source_path in sorted(source_dir.glob("*.cs")):
     except OSError as exc:
         fail(f"Cannot read source file {source_path.relative_to(ROOT)} ({exc})")
 
-for language, keys in translation_keys.items():
+for language in LANGUAGES:
+    keys = translation_keys.get("1.6", {}).get(language, set())
     missing = source_keys - keys
     if missing:
-        fail(f"{language} translations missing C# keys: {sorted(missing)}")
+        fail(f"Active 1.6 {language} translations missing C# keys: {sorted(missing)}")
 
 if ERRORS:
     print("Repository validation FAILED:")
