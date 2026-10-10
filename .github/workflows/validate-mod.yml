@@ -1,0 +1,23 @@
+name: Validate mod repository
+
+on:
+  push:
+    branches: [main, chore/repository-cleanup]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate XML, files, and translations
+        run: python .github/scripts/validate_mod.py
