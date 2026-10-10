@@ -18,6 +18,7 @@ REQUIRED_FILES = (
 )
 ACTIVE_REQUIRED_FILES = (
     "Defs/SeedsPlease_Reeds.xml",
+    "Patches/PlantReedsSowable.xml",
     "Languages/English/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
     "Languages/Russian/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
 )
