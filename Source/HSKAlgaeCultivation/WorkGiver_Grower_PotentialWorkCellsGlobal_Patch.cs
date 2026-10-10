@@ -18,18 +18,18 @@ namespace HSKAlgaeCultivation
             if (pawn?.Map == null)
                 return;
 
-            // Keep the vanilla growing workgivers, but guarantee algae-zone cells
-            // are available to the same-cell manual-order menu as well.
+            // Grower sow/harvest jobs need access to cells in our water-crop zone
+            // so both automatic work and manually forced orders can find them.
             if (!(__instance is WorkGiver_GrowerSow) &&
                 !(__instance is WorkGiver_GrowerHarvest))
             {
                 return;
             }
 
-            __result = AppendAlgaeZoneCells(__result, pawn);
+            __result = AppendWaterCropZoneCells(__result, pawn);
         }
 
-        private static IEnumerable<IntVec3> AppendAlgaeZoneCells(
+        private static IEnumerable<IntVec3> AppendWaterCropZoneCells(
             IEnumerable<IntVec3> original,
             Pawn pawn)
         {

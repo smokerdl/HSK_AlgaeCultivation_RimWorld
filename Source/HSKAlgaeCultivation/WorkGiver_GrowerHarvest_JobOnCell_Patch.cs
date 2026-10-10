@@ -16,19 +16,21 @@ namespace HSKAlgaeCultivation
                 return true;
 
             Plant plant = c.GetPlant(pawn.Map);
-            __result = CanHarvestAlgae(pawn, zone, forced, plant);
+            __result = CanHarvestWaterCrop(pawn, zone, forced, plant);
             return false;
         }
 
-        internal static bool CanHarvestAlgae(
+        internal static bool CanHarvestWaterCrop(
             Pawn pawn,
             Zone_GrowingAlgae zone,
             bool forced,
             Plant plant)
         {
+            // The crop selector controls what gets sown, not whether existing
+            // plants of another supported crop can be harvested after a switch.
             return zone.allowCut &&
                    plant != null &&
-                   plant.def == AlgaeDefOf.PlantAlgae &&
+                   Zone_GrowingAlgae.IsSupportedCrop(plant.def) &&
                    !plant.IsForbidden(pawn) &&
                    plant.HarvestableNow &&
                    plant.LifeStage == PlantLifeStage.Mature &&
@@ -48,7 +50,7 @@ namespace HSKAlgaeCultivation
                 return true;
 
             Plant plant = c.GetPlant(pawn.Map);
-            if (WorkGiver_GrowerHarvest_HasJobOnCell_Patch.CanHarvestAlgae(pawn, zone, forced, plant))
+            if (WorkGiver_GrowerHarvest_HasJobOnCell_Patch.CanHarvestWaterCrop(pawn, zone, forced, plant))
                 __result = JobMaker.MakeJob(JobDefOf.Harvest, plant);
             else
                 __result = null;

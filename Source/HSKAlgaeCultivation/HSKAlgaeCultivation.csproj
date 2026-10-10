@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.5</RimWorldVersion>
+    <RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.6</RimWorldVersion>
     <OutputPath>$(MSBuildThisFileDirectory)..\..\$(RimWorldVersion)\Assemblies\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AssemblyName>HSKAlgaeCultivation</AssemblyName>

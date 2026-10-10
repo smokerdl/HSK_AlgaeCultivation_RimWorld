@@ -5,14 +5,13 @@
   <packageId>smokerdl.hsk.algaecultivation</packageId>
   <url>https://github.com/smokerdl/HSK_AlgaeCultivation_RimWorld</url>
   <supportedVersions>
-    <li>1.5</li>
     <li>1.6</li>
   </supportedVersions>
   <modDependencies>
     <li>
       <packageId>skyarkhangel.HSK</packageId>
       <displayName>Hardcore SK</displayName>
-      <downloadUrl>https://github.com/skyarkhangel/Hardcore-SK</downloadUrl>
+      <downloadUrl>https://github.com/HardcoreSK/Hardcore-SK</downloadUrl>
     </li>
     <li>
       <packageId>brrainz.harmony</packageId>
@@ -26,5 +25,5 @@
     <li>brrainz.harmony</li>
     <li>notfood.seedsplease</li>
   </loadAfter>
-  <description>Adds a dedicated algae cultivation zone for Hardcore SK. Supports PlantAlgae on shallow water, moving shallow water, chest-deep moving water, and marsh. SeedsPlease is optional and enables algae seeds.</description>
+  <description>Supported version: RimWorld 1.6. Adds a selectable aquatic crop zone for HSK PlantAlgae and Odyssey Plant_Reeds. HSK's Odyssey patch makes reeds yield Hay at 3 per harvest. SeedsPlease is optional. The included 1.5 folder and prebuilt DLL are retained as a frozen legacy snapshot and are no longer supported or updated.</description>
 </ModMetaData>
