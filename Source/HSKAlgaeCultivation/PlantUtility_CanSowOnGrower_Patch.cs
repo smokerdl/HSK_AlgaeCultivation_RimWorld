@@ -11,7 +11,7 @@ namespace HSKAlgaeCultivation
         public static void Postfix(ThingDef plantDef, object obj, ref bool __result)
         {
             if (obj is Zone_GrowingAlgae)
-                __result = plantDef == AlgaeDefOf.PlantAlgae;
+                __result = Zone_GrowingAlgae.IsSupportedCrop(plantDef);
         }
     }
 }
