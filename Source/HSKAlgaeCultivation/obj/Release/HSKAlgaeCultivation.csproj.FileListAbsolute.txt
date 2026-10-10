@@ -1,5 +1,0 @@
-C:\SteamLibrary\steamapps\common\RimWorld\Mods\HSK_AlgaeCultivation_RimWorld1.5\1.5\Assemblies\HSKAlgaeCultivation.dll
-C:\SteamLibrary\steamapps\common\RimWorld\Mods\HSK_AlgaeCultivation_RimWorld1.5\Source\HSKAlgaeCultivation\obj\Release\HSKAlgaeCultivation.csproj.AssemblyReference.cache
-C:\SteamLibrary\steamapps\common\RimWorld\Mods\HSK_AlgaeCultivation_RimWorld1.5\Source\HSKAlgaeCultivation\obj\Release\HSKAlgaeCultivation.GeneratedMSBuildEditorConfig.editorconfig
-C:\SteamLibrary\steamapps\common\RimWorld\Mods\HSK_AlgaeCultivation_RimWorld1.5\Source\HSKAlgaeCultivation\obj\Release\HSKAlgaeCultivation.csproj.CoreCompileInputs.cache
-C:\SteamLibrary\steamapps\common\RimWorld\Mods\HSK_AlgaeCultivation_RimWorld1.5\Source\HSKAlgaeCultivation\obj\Release\HSKAlgaeCultivation.dll

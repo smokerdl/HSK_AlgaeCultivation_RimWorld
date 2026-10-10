@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <OutputPath>$(MSBuildThisFileDirectory)..\..\1.5\Assemblies\</OutputPath>
+    <RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.5</RimWorldVersion>
+    <OutputPath>$(MSBuildThisFileDirectory)..\..\$(RimWorldVersion)\Assemblies\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AssemblyName>HSKAlgaeCultivation</AssemblyName>
     <RootNamespace>HSKAlgaeCultivation</RootNamespace>
@@ -12,6 +13,10 @@
     <DebugType>none</DebugType>
     <RimWorldDir Condition="'$(RimWorldDir)' == ''">$(MSBuildThisFileDirectory)..\..\..\..</RimWorldDir>
     <HarmonyPath Condition="'$(HarmonyPath)' == ''">$(RimWorldDir)Mods\Core_SK\Assemblies\0Harmony.dll</HarmonyPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RimWorldVersion)' == '1.6'">
+    <DefineConstants>$(DefineConstants);RIMWORLD_1_6</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
