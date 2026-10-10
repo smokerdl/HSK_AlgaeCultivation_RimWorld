@@ -16,11 +16,6 @@ REQUIRED_FILES = (
     "Patches/GrowZonePatch.xml",
     "Patches/PlantAlgaeSowable.xml",
 )
-MIRRORED_XML = (
-    "Defs/SeedsPlease_Algae.xml",
-    "Patches/GrowZonePatch.xml",
-    "Patches/PlantAlgaeSowable.xml",
-)
 LANGUAGES = ("English", "Russian")
 ERRORS = []
 
@@ -56,7 +51,7 @@ if metadata is not None:
     if package_id != "smokerdl.hsk.algaecultivation":
         fail(f"Unexpected packageId in About/About.xml: {package_id!r}")
 
-# Check that both game-version folders are complete.
+# The 1.5 folder is retained as a legacy snapshot; new features target 1.6.
 for version in VERSIONS:
     version_root = ROOT / version
     for relative in REQUIRED_FILES:
@@ -66,15 +61,7 @@ for version in VERSIONS:
         elif path.suffix == ".xml":
             parse_xml(path)
 
-# Defs and game patches should stay in sync between supported versions.
-for relative in MIRRORED_XML:
-    left = ROOT / VERSIONS[0] / relative
-    right = ROOT / VERSIONS[1] / relative
-    if left.is_file() and right.is_file():
-        if left.read_bytes() != right.read_bytes():
-            fail(f"Version-specific files unexpectedly differ: {VERSIONS[0]}/{relative} vs {VERSIONS[1]}/{relative}")
-
-# Each locale should expose the same keyed entries in both game versions.
+# Translation keys must match within each version and between locales.
 translation_keys = {}
 for language in LANGUAGES:
     keys_by_version = {}
@@ -84,12 +71,13 @@ for language in LANGUAGES:
         if root is not None:
             keys = {child.tag for child in list(root)}
             keys_by_version[version] = keys
-    if len(keys_by_version) == len(VERSIONS):
-        expected = keys_by_version[VERSIONS[0]]
-        for version in VERSIONS[1:]:
-            if keys_by_version[version] != expected:
-                fail(f"Translation keys differ for {language}: {VERSIONS[0]}={sorted(expected)}, {version}={sorted(keys_by_version[version])}")
-        translation_keys[language] = expected
+    for version, keys in keys_by_version.items():
+        if keys != keys_by_version.get("1.5", keys):
+            fail(f"Translation keys differ across version folders for {language}: {version}={sorted(keys)}, 1.5={sorted(keys_by_version.get('1.5', set()))}")
+    if "1.6" in keys_by_version:
+        translation_keys[language] = keys_by_version["1.6"]
+    elif "1.5" in keys_by_version:
+        translation_keys[language] = keys_by_version["1.5"]
 
 if "English" in translation_keys and "Russian" in translation_keys:
     if translation_keys["English"] != translation_keys["Russian"]:
@@ -99,7 +87,7 @@ if "English" in translation_keys and "Russian" in translation_keys:
             f"Russian-only={sorted(translation_keys['Russian'] - translation_keys['English'])}"
         )
 
-# Ensure translation keys used by the C# source are defined in every locale.
+# Ensure translation keys used by the C# source are defined in every active locale.
 source_dir = ROOT / "Source" / "HSKAlgaeCultivation"
 translate_pattern = re.compile(r'"(HSKAlgaeCultivation_[A-Za-z0-9_]+)"\s*\.Translate')
 source_keys = set()
@@ -120,4 +108,4 @@ if ERRORS:
         print(f" - {error}")
     sys.exit(1)
 
-print(f"Repository validation passed: XML parsed, {len(VERSIONS)} game versions checked, translations are consistent.")
+print("Repository validation passed: XML parsed, legacy/active folders checked, active translations are consistent.")
