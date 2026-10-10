@@ -14,10 +14,11 @@ REQUIRED_FILES = (
     "Languages/English/Keyed/HSKAlgaeCultivation.xml",
     "Languages/Russian/Keyed/HSKAlgaeCultivation.xml",
     "Patches/GrowZonePatch.xml",
+)
+LEGACY_REQUIRED_FILES = (
     "Patches/PlantAlgaeSowable.xml",
 )
 ACTIVE_REQUIRED_FILES = (
-    "Patches/PlantReedsSowable.xml",
     "Patches/SeedsPleaseReeds.xml",
     "Languages/English/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
     "Languages/Russian/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
@@ -61,6 +62,8 @@ if metadata is not None:
 for version in VERSIONS:
     version_root = ROOT / version
     required_files = list(REQUIRED_FILES)
+    if version == "1.5":
+        required_files.extend(LEGACY_REQUIRED_FILES)
     if version == "1.6":
         required_files.extend(ACTIVE_REQUIRED_FILES)
     for relative in required_files:
