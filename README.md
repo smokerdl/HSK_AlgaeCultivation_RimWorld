@@ -8,8 +8,8 @@ A small add-on for Hardcore SK (HSK). The active RimWorld 1.6 version provides a
 
 - Draw the Aquatic Crop Zone on the mod's supported water and marsh terrain.
 - Select between HSK's existing `PlantAlgae` and Odyssey's `Plant_Reeds` using the zone's crop selector.
-- Automatic and forced sowing, plus harvesting for the selected crop.
-- The add-on does not replace Reeds' harvest properties or hard-code its yield; the loaded game/mod definitions determine the result.
+- Automatic and forced sowing of the selected crop. Harvesting works for any supported crop already growing in the zone, so changing the selector does not strand an earlier crop.
+- HSK's Odyssey patch defines `Plant_Reeds` as yielding `Hay`, with a maximum yield of 3 at full growth. This add-on does not override the plant's harvest properties or yield.
 - The reeds crop option is available only when Odyssey is active, so algae cultivation continues to work without that DLC.
 - Optional SeedsPlease integration, including seeds for algae and reeds. Reed seeds are added only when both Odyssey and SeedsPlease are active.
 - Prebuilt assemblies are included for normal play; players do not need to compile the mod.
