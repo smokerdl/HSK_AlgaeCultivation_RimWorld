@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 if ([string]::IsNullOrWhiteSpace($RimWorldVersion)) {
-    $RimWorldVersion = '1.5'
+    $RimWorldVersion = '1.6'
 }
 
 if ($RimWorldVersion -notin @('1.5', '1.6')) {
