@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Odyssey reeds need an explicit sow tag for SeedsPlease to recognize
+       Plant_Reeds as a sowable source plant. Add Ground only when Odyssey
+       exists, and do not create a duplicate sowTags node if one is already present. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Ludeon.RimWorld.Odyssey</li>
+    </mods>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/sowTags</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant/sowTags</xpath>
+        <value>
+          <li>Ground</li>
+        </value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+        <value>
+          <sowTags>
+            <li>Ground</li>
+          </sowTags>
+        </value>
+      </nomatch>
+    </match>
+  </Operation>
+</Patch>
