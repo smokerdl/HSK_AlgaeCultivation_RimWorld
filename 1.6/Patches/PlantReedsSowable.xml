@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Reeds are a wild Odyssey plant by default. Only change it when the DLC is active,
+       so algae cultivation remains usable without Odyssey. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Ludeon.RimWorld.Odyssey</li>
+    </mods>
+    <match>
+      <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Plant_Reeds"]/plant</xpath>
+        <value>
+          <sowTags>
+            <li>Ground</li>
+          </sowTags>
+          <harvestMinGrowth>0.33</harvestMinGrowth>
+          <harvestTag>Standard</harvestTag>
+          <harvestedThingDef>Hay</harvestedThingDef>
+          <harvestYield>6</harvestYield>
+        </value>
+      </Operation>
+    </match>
+  </Operation>
+</Patch>
