@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <HSKAlgaeCultivation_ZoneLabel>Aquatic Crop Zone</HSKAlgaeCultivation_ZoneLabel>
-  <HSKAlgaeCultivation_ZoneDesc>A zone for cultivating HSK algae on supported water and marsh terrain. Algae is currently the only supported crop.</HSKAlgaeCultivation_ZoneDesc>
+  <HSKAlgaeCultivation_ZoneDesc>A zone for cultivating HSK algae and the experimental Water Lily on supported water and marsh terrain. This test branch uses RimWorld's standard crop selector.</HSKAlgaeCultivation_ZoneDesc>
   <HSKAlgaeCultivation_ZoneInspect>Crop: {0}</HSKAlgaeCultivation_ZoneInspect>
 </LanguageData>
