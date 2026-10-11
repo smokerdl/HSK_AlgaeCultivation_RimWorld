@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <HSKAlgaeCultivation_ZoneLabel>Водная плантация</HSKAlgaeCultivation_ZoneLabel>
-  <HSKAlgaeCultivation_ZoneDesc>Зона для выращивания водорослей HSK и тростника из Odyssey на подходящей водной и болотистой местности. Тростник можно высаживать только там, где позволяют требования его роста.</HSKAlgaeCultivation_ZoneDesc>
+  <HSKAlgaeCultivation_ZoneLabel>Водорослевое хозяйство</HSKAlgaeCultivation_ZoneLabel>
+  <HSKAlgaeCultivation_ZoneDesc>Зона для выращивания водорослей HSK и водяной лилии на поддерживаемой водной и болотистой местности. Использует стандартный селектор культур RimWorld и сохраняет растения, совпадающие с выбранной культурой.</HSKAlgaeCultivation_ZoneDesc>
   <HSKAlgaeCultivation_ZoneInspect>Культура: {0}</HSKAlgaeCultivation_ZoneInspect>
 </LanguageData>

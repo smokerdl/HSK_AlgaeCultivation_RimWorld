@@ -10,8 +10,16 @@ namespace HSKAlgaeCultivation
         [HarmonyPostfix]
         public static void Postfix(ThingDef plantDef, object obj, ref bool __result)
         {
-            if (obj is Zone_GrowingAlgae)
-                __result = Zone_GrowingAlgae.IsSupportedCrop(plantDef);
+            bool isAquaticCrop =
+                plantDef == AlgaeDefOf.PlantAlgae ||
+                plantDef == AlgaeDefOf.Plant_WaterLily;
+
+            // Both test crops must be visible to the standard selector for
+            // this zone, while remaining unavailable in ordinary growing zones.
+            if (isAquaticCrop)
+                __result = obj is Zone_GrowingAlgae;
+            else if (obj is Zone_GrowingAlgae)
+                __result = false;
         }
     }
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Core_SK defines PlantAlgae in Plants_Water.xml without sowTags because
+       it inherits SK_DeciduousPlantBase, not the normal crop parent. SeedsPlease
+       also needs sowTags to resolve Seed_Algae. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PlantAlgae"]/plant/sowTags</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="PlantAlgae"]/plant/sowTags</xpath>
+      <value>
+        <li>Ground</li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="PlantAlgae"]/plant</xpath>
+      <value>
+        <sowTags>
+          <li>Ground</li>
+        </sowTags>
+      </value>
+    </nomatch>
+  </Operation>
+</Patch>

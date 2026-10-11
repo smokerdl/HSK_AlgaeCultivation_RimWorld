@@ -32,8 +32,8 @@ namespace HSKAlgaeCultivation
             base.ExposeData();
             Scribe_Defs.Look(ref cropToGrow, "hskAlgaeCultivationCropToGrow");
 
-            // Saves made before selectable crops existed have no custom crop field.
-            // Preserve their behaviour by defaulting those zones to algae.
+            // Preserve supported crop selections in new saves. Old or unknown
+            // saved values fall back to algae to maintain compatibility.
             if (Scribe.mode == LoadSaveMode.PostLoadInit && !IsSupportedCrop(cropToGrow))
                 cropToGrow = AlgaeDefOf.PlantAlgae;
         }
@@ -52,18 +52,9 @@ namespace HSKAlgaeCultivation
 
         public static bool IsSupportedCrop(ThingDef plantDef)
         {
-            if (plantDef == null)
-                return false;
-
-            if (plantDef == AlgaeDefOf.PlantAlgae)
-                return true;
-
-#if RIMWORLD_1_6
-            if (plantDef == AlgaeDefOf.Plant_Reeds)
-                return true;
-#endif
-
-            return false;
+            return plantDef != null &&
+                   (plantDef == AlgaeDefOf.PlantAlgae ||
+                    plantDef == AlgaeDefOf.Plant_WaterLily);
         }
 
         public override string GetInspectString()
@@ -86,8 +77,8 @@ namespace HSKAlgaeCultivation
             yield return DesignatorUtility.FindAllowedDesignator<Designator_AlgaeGrowingZone_Expand>();
         }
 
-        // These methods deliberately reimplement IPlantToGrowSettable while
-        // leaving Zone_Growing's private crop field alone.
+        // Reimplement IPlantToGrowSettable while leaving Zone_Growing's private
+        // plant field alone. The vanilla crop picker calls this implementation.
         public new ThingDef GetPlantDefToGrow()
         {
             return IsSupportedCrop(cropToGrow) ? cropToGrow : AlgaeDefOf.PlantAlgae;

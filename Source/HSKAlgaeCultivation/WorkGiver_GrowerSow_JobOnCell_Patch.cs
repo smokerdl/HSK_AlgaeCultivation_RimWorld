@@ -37,15 +37,36 @@ namespace HSKAlgaeCultivation
                 return null;
 #endif
 
+            // Match vanilla grow-zone behavior: do not disturb a plant that
+            // already matches the selected crop. This includes naturally
+            // spawned algae when algae is the selected crop.
+            Plant existingPlant = c.GetPlant(pawn.Map);
+            if (existingPlant != null)
+            {
+                if (existingPlant.def == plantDef)
+                    return null;
+
+                // Plants may not report BlockPlanting in the same way as other
+                // blockers. Handle mismatched plants explicitly, and respect
+                // the zone's Allow Cutting toggle before scheduling removal.
+                if (!zone.allowCut ||
+                    existingPlant.IsForbidden(pawn) ||
+                    !pawn.CanReserve(existingPlant, 1, -1, null, forced))
+                {
+                    return null;
+                }
+
+                return JobMaker.MakeJob(JobDefOf.CutPlant, existingPlant);
+            }
+
             List<Thing> thingList = c.GetThingList(pawn.Map);
 
             for (int i = 0; i < thingList.Count; i++)
             {
                 Thing thing = thingList[i];
 
-                if (thing.def == plantDef)
-                    return null;
-
+                // A plant at this cell was handled above, so only deal with
+                // buildings, items, blueprints, and other planting blockers here.
                 if (!thing.def.BlocksPlanting(true))
                     continue;
 
@@ -54,9 +75,14 @@ namespace HSKAlgaeCultivation
 
                 if (thing.def.category == ThingCategory.Plant)
                 {
-                    Plant plant = thing as Plant;
-                    if (!thing.IsForbidden(pawn) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn))
-                        return JobMaker.MakeJob(JobDefOf.CutPlant, thing);
+                    // Defensive fallback in case a custom ThingDef is not
+                    // returned by c.GetPlant for some reason.
+                    if (thing is Plant plant &&
+                        zone.allowCut &&
+                        !thing.IsForbidden(pawn))
+                    {
+                        return JobMaker.MakeJob(JobDefOf.CutPlant, plant);
+                    }
 
                     return null;
                 }
@@ -66,13 +92,6 @@ namespace HSKAlgaeCultivation
 
                 return null;
             }
-
-#if RIMWORLD_1_6
-            // Reeds have their own terrain requirements. Do not assign sowing
-            // jobs on water types or other terrain where that plant cannot grow.
-            if (plantDef == AlgaeDefOf.Plant_Reeds && !plantDef.CanNowPlantAt(c, pawn.Map))
-                return null;
-#endif
 
             if (plantDef.plant.sowMinSkill > 0 &&
                 pawn.skills != null &&
