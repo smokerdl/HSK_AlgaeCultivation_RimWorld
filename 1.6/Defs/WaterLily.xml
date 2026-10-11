@@ -17,7 +17,7 @@
       <BeautyOutdoors>15</BeautyOutdoors>
     </statBases>
     <graphicData>
-      <texPath>Things/Flowers/WaterLily/WaterLily</texPath>
+      <texPath>Things/Flowers/WaterLily</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <plant>
