@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- SeedsPlease considers a plant sowable only when it has sowTags.
+       The Harmony patch restricts PlantAlgae to the aquatic crop zone,
+       so Ground does not make algae available in ordinary growing zones. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="PlantAlgae"]/plant</xpath>
+    <value>
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+    </value>
+  </Operation>
+</Patch>
