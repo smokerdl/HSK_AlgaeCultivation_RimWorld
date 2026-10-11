@@ -32,9 +32,9 @@ namespace HSKAlgaeCultivation
             base.ExposeData();
             Scribe_Defs.Look(ref cropToGrow, "hskAlgaeCultivationCropToGrow");
 
-            // Saves made before selectable crops existed have no custom crop field.
-            // Preserve their behaviour by defaulting those zones to algae.
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && cropToGrow != AlgaeDefOf.PlantAlgae)
+            // Preserve supported crop selections in new saves. Old or unknown
+            // saved values fall back to algae to maintain compatibility.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && !IsSupportedCrop(cropToGrow))
                 cropToGrow = AlgaeDefOf.PlantAlgae;
         }
 
@@ -52,7 +52,9 @@ namespace HSKAlgaeCultivation
 
         public static bool IsSupportedCrop(ThingDef plantDef)
         {
-            return plantDef != null && plantDef == AlgaeDefOf.PlantAlgae;
+            return plantDef != null &&
+                   (plantDef == AlgaeDefOf.PlantAlgae ||
+                    plantDef == AlgaeDefOf.Plant_WaterLily);
         }
 
         public override string GetInspectString()
@@ -76,18 +78,15 @@ namespace HSKAlgaeCultivation
         }
 
         // Reimplement IPlantToGrowSettable while leaving Zone_Growing's private
-        // plant field alone. Algae is currently the only crop and remains the
-        // default for newly created zones and for older saves.
+        // plant field alone. The vanilla crop picker calls this implementation.
         public new ThingDef GetPlantDefToGrow()
         {
-            return cropToGrow == AlgaeDefOf.PlantAlgae ? cropToGrow : AlgaeDefOf.PlantAlgae;
+            return IsSupportedCrop(cropToGrow) ? cropToGrow : AlgaeDefOf.PlantAlgae;
         }
 
         public new void SetPlantDefToGrow(ThingDef plantDef)
         {
-            // Keep the normal selector pipeline working, but reject every crop
-            // except HSK algae until additional custom aquatic plants are added.
-            if (plantDef == AlgaeDefOf.PlantAlgae)
+            if (IsSupportedCrop(plantDef))
                 cropToGrow = plantDef;
         }
 
