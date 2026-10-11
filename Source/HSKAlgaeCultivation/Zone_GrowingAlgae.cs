@@ -32,9 +32,8 @@ namespace HSKAlgaeCultivation
             base.ExposeData();
             Scribe_Defs.Look(ref cropToGrow, "hskAlgaeCultivationCropToGrow");
 
-            // Saves made before selectable crops existed have no custom crop field.
-            // Preserve their behaviour by defaulting those zones to algae.
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && !IsSupportedCrop(cropToGrow))
+            // Keep older saves stable. This zone currently cultivates algae only.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && cropToGrow != AlgaeDefOf.PlantAlgae)
                 cropToGrow = AlgaeDefOf.PlantAlgae;
         }
 
@@ -52,33 +51,19 @@ namespace HSKAlgaeCultivation
 
         public static bool IsSupportedCrop(ThingDef plantDef)
         {
-            if (plantDef == null)
-                return false;
-
-            if (plantDef == AlgaeDefOf.PlantAlgae)
-                return true;
-
-#if RIMWORLD_1_6
-            if (plantDef == AlgaeDefOf.Plant_Reeds)
-                return true;
-#endif
-
-            return false;
+            return plantDef != null && plantDef == AlgaeDefOf.PlantAlgae;
         }
 
         public override string GetInspectString()
         {
-            ThingDef selectedCrop = GetPlantDefToGrow();
-            return "HSKAlgaeCultivation_ZoneInspect".Translate(selectedCrop.LabelCap);
+            return "HSKAlgaeCultivation_ZoneInspect".Translate(GetPlantDefToGrow().LabelCap);
         }
 
         public override void AddCell(IntVec3 c)
         {
             base.AddCell(c);
             foreach (Thing thing in Map.thingGrid.ThingsListAt(c))
-            {
                 Designator_PlantsHarvestWood.PossiblyWarnPlayerImportantPlantDesignateCut(thing);
-            }
         }
 
         public override IEnumerable<Gizmo> GetZoneAddGizmos()
@@ -86,17 +71,16 @@ namespace HSKAlgaeCultivation
             yield return DesignatorUtility.FindAllowedDesignator<Designator_AlgaeGrowingZone_Expand>();
         }
 
-        // These methods deliberately reimplement IPlantToGrowSettable while
-        // leaving Zone_Growing's private crop field alone.
+        // Reimplement the interface while leaving Zone_Growing's private crop field alone.
         public new ThingDef GetPlantDefToGrow()
         {
-            return IsSupportedCrop(cropToGrow) ? cropToGrow : AlgaeDefOf.PlantAlgae;
+            return AlgaeDefOf.PlantAlgae;
         }
 
         public new void SetPlantDefToGrow(ThingDef plantDef)
         {
-            if (IsSupportedCrop(plantDef))
-                cropToGrow = plantDef;
+            // The only supported crop is algae; the selector uses this setter.
+            cropToGrow = AlgaeDefOf.PlantAlgae;
         }
 
         public new bool CanAcceptSowNow()
