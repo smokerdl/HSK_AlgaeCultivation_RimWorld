@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Reeds is a vanilla Odyssey plant; HSK supplies its hay yield but not
+       a SeedsPlease item. Require both the crop DLC and SeedsPlease. -->
+  <SeedsPlease.SeedDef MayRequire="notfood.SeedsPlease,Ludeon.RimWorld.Odyssey" ParentName="SeedBase">
+    <defName>Seed_Reeds</defName>
+    <label>reeds seeds</label>
+    <sources>
+      <li>Plant_Reeds</li>
+    </sources>
+    <graphicData>
+      <texPath>Things/Item/Seeds/Seeds</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2</MarketValue>
+    </statBases>
+  </SeedsPlease.SeedDef>
+</Defs>
