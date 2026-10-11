@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <HSKAlgaeCultivation_ZoneLabel>Водная плантация</HSKAlgaeCultivation_ZoneLabel>
-  <HSKAlgaeCultivation_ZoneDesc>Зона для выращивания водорослей HSK на подходящей водной и болотистой местности. На данный момент поддерживаются только водоросли.</HSKAlgaeCultivation_ZoneDesc>
+  <HSKAlgaeCultivation_ZoneDesc>Зона для выращивания водорослей HSK и экспериментальной водяной лилии на поддерживаемой водной и болотистой местности. В этой тестовой ветке используется стандартный селектор культур RimWorld.</HSKAlgaeCultivation_ZoneDesc>
   <HSKAlgaeCultivation_ZoneInspect>Культура: {0}</HSKAlgaeCultivation_ZoneInspect>
 </LanguageData>
