@@ -25,5 +25,5 @@
     <li>brrainz.harmony</li>
     <li>notfood.seedsplease</li>
   </loadAfter>
-  <description>Supported version: RimWorld 1.6. Adds a selectable aquatic crop zone for HSK PlantAlgae. The crop selector currently contains algae only; custom aquatic plants may be added after selector behavior is stable. SeedsPlease is optional. The included 1.5 folder and prebuilt DLL are retained as a frozen legacy snapshot and are no longer supported or updated.</description>
+  <description>Experimental RimWorld 1.6 branch. Adds an aquatic crop zone for HSK PlantAlgae and a Water Lily test plant to investigate the vanilla crop selector. Water Lily temporarily reuses an HSK flower texture. SeedsPlease integration is optional. The included 1.5 folder and DLL remain a frozen legacy snapshot.</description>
 </ModMetaData>
