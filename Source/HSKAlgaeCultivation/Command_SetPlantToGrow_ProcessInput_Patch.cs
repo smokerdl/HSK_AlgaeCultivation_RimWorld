@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using HarmonyLib;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace HSKAlgaeCultivation
@@ -15,7 +14,7 @@ namespace HSKAlgaeCultivation
     public static class Command_SetPlantToGrow_ProcessInput_Patch
     {
         [HarmonyPrefix]
-        public static bool Prefix(Command_SetPlantToGrow __instance, Event ev)
+        public static bool Prefix(Command_SetPlantToGrow __instance)
         {
             Zone_GrowingAlgae zone = __instance.settable as Zone_GrowingAlgae;
             if (zone == null)
