@@ -22,7 +22,6 @@ LEGACY_REQUIRED_FILES = (
 ACTIVE_REQUIRED_FILES = (
     "Patches/ReedsSowable.xml",
     "Defs/SeedsPlease_Reeds.xml",
-    "Source/HSKAlgaeCultivation/Command_SetPlantToGrow_IsPlantAvailable_Patch.cs",
     "Languages/English/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
     "Languages/Russian/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
 )
