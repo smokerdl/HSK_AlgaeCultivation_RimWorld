@@ -80,7 +80,7 @@ namespace HSKAlgaeCultivation
         // default for newly created zones and for older saves.
         public new ThingDef GetPlantDefToGrow()
         {
-            return AlgaeDefOf.PlantAlgae;
+            return cropToGrow == AlgaeDefOf.PlantAlgae ? cropToGrow : AlgaeDefOf.PlantAlgae;
         }
 
         public new void SetPlantDefToGrow(ThingDef plantDef)
