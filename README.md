@@ -1,27 +1,30 @@
 # HSK Algae Cultivation
 
-A small add-on for Hardcore SK (HSK). The active RimWorld 1.6 version provides a dedicated **Aquatic Crop Zone** for HSK algae.
+A small add-on for Hardcore SK (HSK). The active RimWorld 1.6 code provides an aquatic crop zone for HSK algae. The experimental `experiment/water-lily-standard-selector` branch also adds Water Lily to investigate why the HSK algae plant is missing from RimWorld's vanilla crop selector.
 
 **Game versions:** the included RimWorld 1.5 build is a frozen legacy snapshot. New features and active testing target RimWorld 1.6.
 
-## Features
+## Features in the experiment branch
 
 - Draw the Aquatic Crop Zone on the mod's supported water and marsh terrain.
-- Use the zone's crop selector to select HSK's existing `PlantAlgae`. Algae is the only supported crop for now; the selector is being stabilized before adding custom aquatic plants.
-- Automatic and forced sowing of algae, plus harvesting of mature algae growing in the zone.
-- Optional SeedsPlease integration for algae seeds.
-- Prebuilt assemblies are included for normal play; players do not need to compile the mod.
+- Register HSK's existing `PlantAlgae` and the test plant `Plant_WaterLily` as crops supported only by this custom zone.
+- Use RimWorld's standard crop selector instead of a custom menu, so both plants can be compared through the same selection logic.
+- Water Lily uses HSK's flower base and Beauty/BeautyOutdoors values of 15. Its texture currently reuses the HSK white-rose sprite as a placeholder.
+- Optional SeedsPlease integration includes definitions for algae seeds and water lily seeds.
+- Automatic/forced sowing and crop harvesting continue to use the mod's zone-specific workgiver patches.
 
-## Installation
+## Installation and testing
 
-1. Download the repository archive using **Code → Download ZIP**.
-2. Extract the mod folder into `RimWorld/Mods/`.
-3. Enable Hardcore SK and **HSK Algae Cultivation** in the mod list. Harmony must be available in the mod loadout.
-4. In RimWorld 1.6, use **Zones → Aquatic Crop Zone**.
+1. Use the `experiment/water-lily-standard-selector` branch for this test, not `main`.
+2. Install the mod in `RimWorld/Mods/` and enable Hardcore SK, HSK Algae Cultivation, Harmony, and optionally SeedsPlease.
+3. In RimWorld 1.6, create an Aquatic Crop Zone on a supported water/marsh terrain.
+4. Open the crop selector and check whether **Water Lily**, **Algae**, both, or neither are listed.
+5. If the selector works, check sowing/growth, beauty stats, and SeedsPlease behavior separately. A visible selector entry does not by itself prove that the plant can grow on every allowed terrain.
+6. Check the game log for XML errors and Harmony exceptions.
 
-Keep the `1.5` and `1.6` folders intact. The `1.5` content and assembly are retained as the previous build and will not receive new features.
+Keep the `1.5` and `1.6` folders intact. The `1.5` content and assembly remain a frozen legacy snapshot and will not receive new features.
 
-SeedsPlease is optional. When package ID `notfood.seedsplease` is active, the mod defines seeds for algae. Without SeedsPlease, the zone works without seed mechanics.
+SeedsPlease is optional. When package ID `notfood.seedsplease` is active, the mod loads its seed definitions. The flower texture is a temporary placeholder; replace it when custom Water Lily art is ready.
 
 ## Build from source
 
@@ -33,4 +36,4 @@ For the manual in Russian, see [README_RU.md](README_RU.md).
 
 ## Validation
 
-GitHub Actions validates XML syntax, required files for the active and legacy folders, and localization keys. Static checks do not replace an in-game test after code or DLL changes.
+GitHub Actions validates XML syntax, required files for the active and legacy folders, and localization keys. Static checks do not replace a local C# build or an in-game test.
