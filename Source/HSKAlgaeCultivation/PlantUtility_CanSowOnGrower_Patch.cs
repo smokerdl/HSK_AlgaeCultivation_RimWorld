@@ -10,8 +10,13 @@ namespace HSKAlgaeCultivation
         [HarmonyPostfix]
         public static void Postfix(ThingDef plantDef, object obj, ref bool __result)
         {
-            if (obj is Zone_GrowingAlgae)
-                __result = Zone_GrowingAlgae.IsSupportedCrop(plantDef);
+            // PlantAlgae needs Ground sowTags so the vanilla crop picker and
+            // SeedsPlease can discover it, but it must only be cultivable in
+            // this mod's aquatic zone.
+            if (plantDef == AlgaeDefOf.PlantAlgae)
+                __result = obj is Zone_GrowingAlgae;
+            else if (obj is Zone_GrowingAlgae)
+                __result = false;
         }
     }
 }
