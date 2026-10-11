@@ -26,11 +26,13 @@ namespace HSKAlgaeCultivation
             bool forced,
             Plant plant)
         {
-            // The crop selector controls what gets sown, not whether existing
-            // plants of another supported crop can be harvested after a switch.
+            // Only harvest a plant that matches the zone's selected crop.
+            // A different plant should be handled by the sow workgiver as a
+            // CutPlant job, while a matching wild plant should be preserved
+            // until it becomes harvestable.
             return zone.allowCut &&
                    plant != null &&
-                   Zone_GrowingAlgae.IsSupportedCrop(plant.def) &&
+                   plant.def == zone.GetPlantDefToGrow() &&
                    !plant.IsForbidden(pawn) &&
                    plant.HarvestableNow &&
                    plant.LifeStage == PlantLifeStage.Mature &&
