@@ -1,49 +1,38 @@
 # HSK Algae Cultivation
 
-A small add-on for Hardcore SK (HSK). The experimental RimWorld 1.6 branch adds Water Lily to test RimWorld's standard crop selector and the aquatic zone's cleanup behavior.
+An add-on for Hardcore SK (HSK) that adds a dedicated aquatic crop zone for HSK's Algae and Water Lily in RimWorld 1.6.
 
-**Game versions:** the included RimWorld 1.5 build is a frozen legacy snapshot. New features and active testing target RimWorld 1.6.
+**Version support:** active development targets RimWorld 1.6. The included RimWorld 1.5 folder and assembly remain a frozen legacy snapshot.
 
-## Features in the experiment branch
+## Features
 
-- An aquatic crop zone on the mod's supported water and marsh terrain.
-- Two supported crops: HSK's `PlantAlgae` and the experimental `Plant_WaterLily`.
-- RimWorld's standard crop selector, not a custom menu.
-- Water Lily uses HSK's flower base with Beauty and BeautyOutdoors values of 15. Its texture temporarily reuses the HSK white-rose sprite.
-- Optional SeedsPlease seed definitions for algae and water lily.
-- Zone-specific automatic/forced sowing, crop cleanup, and harvesting logic.
+- A dedicated aquatic crop zone, labeled **Aquatic Crop Zone** in English and **Водорослевое хозяйство** in Russian, for supported water and marsh terrain.
+- Two supported crops: HSK's `PlantAlgae` and `Plant_WaterLily`.
+- RimWorld's standard crop selector. With SeedsPlease enabled, the relevant seed items must physically be present on the map for a crop to be offered by the selector.
+- Water Lily has `Beauty=15` and `BeautyOutdoors=15`. Its texture currently reuses the HSK white-rose sprite as a placeholder.
+- Optional SeedsPlease seed definitions for Algae and Water Lily.
+- Crop-aware cleanup, automatic/forced sowing, and harvesting tied to the selected crop.
 
-## Expected cleanup behavior
+## Cleanup and sowing behavior
 
-- If a cell already contains the selected crop, leave that plant in place. For example, existing wild algae should be preserved when the selected crop is algae.
-- If a cell contains a different plant, the pawn should first receive a CutPlant job; sowing may happen on a later work pass. Automatic cleanup requires both **Allow Sowing** and **Allow Cutting** to be enabled.
-- When Allow Cutting is disabled, the pawn should neither cut the mismatched plant nor sow over it.
-- Other planting blockers are handled separately. Haulable items may be hauled aside, while non-movable blockers prevent sowing.
-- In the current SeedsPlease game test, the selected plant only appears in the selector when its seed items physically exist on the map. For selector testing, place algae seeds and/or water lily seeds on the map first.
+- If a cell already contains the selected crop, the pawn leaves that plant in place. Naturally spawned Algae is preserved when Algae is selected.
+- If a cell contains a different plant, the pawn first receives a `CutPlant` job. Sowing can occur on a subsequent work pass. Automatic cleanup requires both **Allow Sowing** and **Allow Cutting** to be enabled.
+- If **Allow Cutting** is disabled, the pawn must not cut the mismatched plant or sow over it.
+- Other planting blockers are handled separately: haulable items may be hauled aside, while non-movable blockers prevent sowing.
 
-This behavior still needs confirmation in-game with the updated build.
+## Installation
 
-## Installation and testing
+1. Download the repository archive using **Code → Download ZIP**.
+2. Extract the mod folder into `RimWorld/Mods/`.
+3. Enable Hardcore SK, HSK Algae Cultivation, and Harmony. SeedsPlease is optional.
+4. In RimWorld 1.6, choose **Zones → Aquatic Crop Zone** / **Зоны → Водорослевое хозяйство**.
 
-1. Use the `experiment/water-lily-standard-selector` branch for this test, not `main`.
-2. Install the mod in `RimWorld/Mods/` and enable Hardcore SK, HSK Algae Cultivation, Harmony, and SeedsPlease for seed testing.
-3. In RimWorld 1.6, create an Aquatic Crop Zone on supported terrain.
-4. Check the selector with the relevant seed items present on the map.
-5. Select algae and observe cells containing wild algae, Water Lily, Odyssey reeds (if Odyssey is enabled), another plant, and a haulable item.
-6. Repeat with Allow Sowing and Allow Cutting enabled, then with Allow Cutting disabled.
-7. Select algae in a cell that already contains wild algae and confirm the existing plant is preserved.
-8. Check the game log for XML errors and Harmony exceptions.
-
-Keep the `1.5` and `1.6` folders intact. The `1.5` content and assembly remain a frozen legacy snapshot and will not receive new features. The Water Lily texture is a placeholder pending custom art.
+Keep the `1.5` and `1.6` folders intact. The `1.5` files are kept for legacy purposes and are not updated.
 
 ## Build from source
 
-New development targets RimWorld 1.6. To rebuild after changing C# code, run `Source/Build.bat` from the repository root on Windows. Set `RIMWORLD_DIR` to the correct game installation and `RIMWORLD_VERSION=1.6`. If needed, specify the exact Harmony assembly path with `HARMONY_PATH`.
+New development targets RimWorld 1.6. To rebuild after changing C# code, run `Source/Build.bat` from the repository root on Windows. Set `RIMWORLD_DIR` to the game installation and `RIMWORLD_VERSION=1.6`. If needed, specify the Harmony assembly path with `HARMONY_PATH`.
 
-The prebuilt 1.5 DLL is retained as-is; do not rebuild the 1.5 target when you need to preserve that legacy snapshot.
+The build and gameplay tests are important: the repository's GitHub Actions checks XML syntax, required files, and localization keys, but does not compile C# or launch RimWorld.
 
-For the manual in Russian, see [README_RU.md](README_RU.md).
-
-## Validation
-
-GitHub Actions validates XML syntax, required files for the active and legacy folders, and localization keys. Static checks do not replace a local C# build or an in-game test.
+For the Russian guide, see [README_RU.md](README_RU.md).
