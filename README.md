@@ -16,8 +16,8 @@ A small add-on for Hardcore SK (HSK). The experimental RimWorld 1.6 branch adds 
 ## Expected cleanup behavior
 
 - If a cell already contains the selected crop, leave that plant in place. For example, existing wild algae should be preserved when the selected crop is algae.
-- If a cell contains a different plant, the pawn should first receive a CutPlant job; sowing may happen on a later work pass.
-- Mismatched-plant cleanup respects the zone's **Allow Cutting** toggle. When cutting is disabled, the pawn should neither cut the mismatched plant nor sow over it.
+- If a cell contains a different plant, the pawn should first receive a CutPlant job; sowing may happen on a later work pass. Automatic cleanup requires both **Allow Sowing** and **Allow Cutting** to be enabled.
+- When Allow Cutting is disabled, the pawn should neither cut the mismatched plant nor sow over it.
 - Other planting blockers are handled separately. Haulable items may be hauled aside, while non-movable blockers prevent sowing.
 - In the current SeedsPlease game test, the selected plant only appears in the selector when its seed items physically exist on the map. For selector testing, place algae seeds and/or water lily seeds on the map first.
 
@@ -30,7 +30,7 @@ This behavior still needs confirmation in-game with the updated build.
 3. In RimWorld 1.6, create an Aquatic Crop Zone on supported terrain.
 4. Check the selector with the relevant seed items present on the map.
 5. Select algae and observe cells containing wild algae, Water Lily, Odyssey reeds (if Odyssey is enabled), another plant, and a haulable item.
-6. Repeat with Allow Cutting on and off.
+6. Repeat with Allow Sowing and Allow Cutting enabled, then with Allow Cutting disabled.
 7. Select algae in a cell that already contains wild algae and confirm the existing plant is preserved.
 8. Check the game log for XML errors and Harmony exceptions.
 
