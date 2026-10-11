@@ -16,11 +16,11 @@ namespace HSKAlgaeCultivation
             if (zone == null)
                 return true;
 
-            __result = TryMakeAlgaeSowJob(pawn, c, zone, forced);
+            __result = TryMakeWaterCropSowJob(pawn, c, zone, forced);
             return false;
         }
 
-        private static Job TryMakeAlgaeSowJob(Pawn pawn, IntVec3 c, Zone_GrowingAlgae zone, bool forced)
+        private static Job TryMakeWaterCropSowJob(Pawn pawn, IntVec3 c, Zone_GrowingAlgae zone, bool forced)
         {
             if (!zone.allowSow || c.IsForbidden(pawn))
                 return null;
