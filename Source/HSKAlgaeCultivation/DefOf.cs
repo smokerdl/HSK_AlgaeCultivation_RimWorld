@@ -7,6 +7,7 @@ namespace HSKAlgaeCultivation
     public static class AlgaeDefOf
     {
         public static ThingDef PlantAlgae;
+        public static ThingDef Plant_WaterLily;
 
         static AlgaeDefOf()
         {
