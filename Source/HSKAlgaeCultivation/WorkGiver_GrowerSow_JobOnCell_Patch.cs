@@ -67,13 +67,6 @@ namespace HSKAlgaeCultivation
                 return null;
             }
 
-#if RIMWORLD_1_6
-            // Reeds have their own terrain requirements. Do not assign sowing
-            // jobs on water types or other terrain where that plant cannot grow.
-            if (plantDef == AlgaeDefOf.Plant_Reeds && !plantDef.CanNowPlantAt(c, pawn.Map))
-                return null;
-#endif
-
             if (plantDef.plant.sowMinSkill > 0 &&
                 pawn.skills != null &&
                 pawn.skills.GetSkill(SkillDefOf.Plants).Level < plantDef.plant.sowMinSkill)
