@@ -20,6 +20,7 @@ LEGACY_REQUIRED_FILES = (
     "Patches/PlantAlgaeSowable.xml",
 )
 ACTIVE_REQUIRED_FILES = (
+    "Patches/PlantAlgaeSowable.xml",
     "Patches/ReedsSowable.xml",
     "Defs/SeedsPlease_Reeds.xml",
     "Languages/English/DefInjected/SeedsPlease.SeedDef/HSKAlgaeCultivation.xml",
