@@ -9,6 +9,7 @@
     <defName>Plant_WaterLily</defName>
     <label>water lily</label>
     <description>A cultivated aquatic flower with broad floating leaves and a pale blossom. It is grown for beauty rather than for food.</description>
+    <thingClass>SK.Plant_Algae</thingClass>
     <selectable>true</selectable>
     <statBases>
       <MaxHitPoints>70</MaxHitPoints>
