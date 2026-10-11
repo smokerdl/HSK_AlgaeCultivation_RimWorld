@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <!--
-    Experimental aquatic flower for RimWorld 1.6 selector investigation.
-    Reuses the HSK white-rose texture as a temporary placeholder; replace it
-    with the Water Lily sprite once the custom art is ready.
+    Aquatic flower for RimWorld 1.6.
+    Uses local placeholder copies of the HSK white-rose variants until original
+    Water Lily artwork is ready.
   -->
   <ThingDef ParentName="SK_DeciduousPlantFlowerBase">
     <defName>Plant_WaterLily</defName>
@@ -17,7 +17,7 @@
       <BeautyOutdoors>15</BeautyOutdoors>
     </statBases>
     <graphicData>
-      <texPath>Things/Flowers/SK/whiterose</texPath>
+      <texPath>Things/Flowers/WaterLily/WaterLily</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <plant>
