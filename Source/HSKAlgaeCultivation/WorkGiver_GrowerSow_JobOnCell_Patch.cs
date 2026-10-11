@@ -16,11 +16,11 @@ namespace HSKAlgaeCultivation
             if (zone == null)
                 return true;
 
-            __result = TryMakeWaterCropSowJob(pawn, c, zone, forced);
+            __result = TryMakeAlgaeSowJob(pawn, c, zone, forced);
             return false;
         }
 
-        private static Job TryMakeWaterCropSowJob(Pawn pawn, IntVec3 c, Zone_GrowingAlgae zone, bool forced)
+        private static Job TryMakeAlgaeSowJob(Pawn pawn, IntVec3 c, Zone_GrowingAlgae zone, bool forced)
         {
             if (!zone.allowSow || c.IsForbidden(pawn))
                 return null;
@@ -66,13 +66,6 @@ namespace HSKAlgaeCultivation
 
                 return null;
             }
-
-#if RIMWORLD_1_6
-            // Reeds have their own terrain requirements. Do not assign sowing
-            // jobs on water types or other terrain where that plant cannot grow.
-            if (plantDef == AlgaeDefOf.Plant_Reeds && !plantDef.CanNowPlantAt(c, pawn.Map))
-                return null;
-#endif
 
             if (plantDef.plant.sowMinSkill > 0 &&
                 pawn.skills != null &&
