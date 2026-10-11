@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--
+    Experimental aquatic flower for RimWorld 1.6 selector investigation.
+    Reuses the HSK white-rose texture as a temporary placeholder; replace it
+    with the Water Lily sprite once the custom art is ready.
+  -->
+  <ThingDef ParentName="SK_DeciduousPlantFlowerBase">
+    <defName>Plant_WaterLily</defName>
+    <label>water lily</label>
+    <description>A cultivated aquatic flower with broad floating leaves and a pale blossom. It is grown for beauty rather than for food.</description>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>70</MaxHitPoints>
+      <Beauty>15</Beauty>
+      <BeautyOutdoors>15</BeautyOutdoors>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Flowers/SK/whiterose</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <plant>
+      <!-- Ground is needed by RimWorld's normal crop selector; the mod patch
+           restricts this plant to Zone_GrowingAlgae despite this general tag. -->
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+      <sowWork>250</sowWork>
+      <fertilityMin>0.01</fertilityMin>
+      <fertilitySensitivity>0.1</fertilitySensitivity>
+      <growDays>4</growDays>
+      <growMinGlow>0.3</growMinGlow>
+      <lifespanDaysPerGrowDays>5</lifespanDaysPerGrowDays>
+      <maxMeshCount>4</maxMeshCount>
+      <visualSizeRange>0.4~0.9</visualSizeRange>
+      <topWindExposure>0.1</topWindExposure>
+    </plant>
+  </ThingDef>
+</Defs>
