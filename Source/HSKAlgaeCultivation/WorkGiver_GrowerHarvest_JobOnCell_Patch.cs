@@ -28,7 +28,9 @@ namespace HSKAlgaeCultivation
         {
             // Water Lily is decorative and must never receive a harvest job.
             // Algae and any future harvestable crops continue through the checks below.
-            if (plant == null || plant.def == AlgaeDefOf.Plant_WaterLily)
+            if (plant == null ||
+                plant.def == AlgaeDefOf.Plant_WaterLily ||
+                plant.def == AlgaeDefOf.Plant_Glowreed)
                 return false;
 
             // Only harvest a plant that matches the zone's selected crop.
