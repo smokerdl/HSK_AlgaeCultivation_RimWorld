@@ -1,3 +1,4 @@
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -130,7 +131,7 @@ namespace HSKAlgaeCultivation
 
             mutable.glowRadius = nextRadius;
             mutable.glowColor = nextColor;
-            Find.GlowGrid.MarkGlowGridDirty(parent.Position);
+            map.glowGrid.MarkGlowGridDirty(parent.Position);
         }
 
         public override void PostExposeData()
