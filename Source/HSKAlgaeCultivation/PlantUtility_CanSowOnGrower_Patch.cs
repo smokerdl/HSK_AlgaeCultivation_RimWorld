@@ -12,7 +12,8 @@ namespace HSKAlgaeCultivation
         {
             bool isAquaticCrop =
                 plantDef == AlgaeDefOf.PlantAlgae ||
-                plantDef == AlgaeDefOf.Plant_WaterLily;
+                plantDef == AlgaeDefOf.Plant_WaterLily ||
+                plantDef == AlgaeDefOf.Plant_Glowreed;
 
             // Both test crops must be visible to the standard selector for
             // this zone, while remaining unavailable in ordinary growing zones.
