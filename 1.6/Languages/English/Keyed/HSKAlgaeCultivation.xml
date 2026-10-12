@@ -3,4 +3,5 @@
   <HSKAlgaeCultivation_ZoneLabel>Aquatic Crop Zone</HSKAlgaeCultivation_ZoneLabel>
   <HSKAlgaeCultivation_ZoneDesc>A zone for cultivating HSK algae and Water Lily on supported water and marsh terrain. It uses RimWorld's standard crop selector and preserves plants that already match the selected crop.</HSKAlgaeCultivation_ZoneDesc>
   <HSKAlgaeCultivation_ZoneInspect>Crop: {0}</HSKAlgaeCultivation_ZoneInspect>
+  <HSKAlgaeCultivation_GlowreedCharge>Stored solar energy: {0}%</HSKAlgaeCultivation_GlowreedCharge>
 </LanguageData>
