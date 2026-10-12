@@ -2,8 +2,7 @@
 <Defs>
   <!--
     Aquatic flower for RimWorld 1.6.
-    Uses local placeholder copies of the HSK white-rose variants until original
-    Water Lily artwork is ready.
+    Uses original local Water Lily artwork.
   -->
   <ThingDef ParentName="SK_DeciduousPlantFlowerBase">
     <defName>Plant_WaterLily</defName>
@@ -27,6 +26,7 @@
         <li>Ground</li>
       </sowTags>
       <sowWork>250</sowWork>
+      <harvestYield>0</harvestYield>
       <fertilityMin>0.01</fertilityMin>
       <fertilitySensitivity>0.1</fertilitySensitivity>
       <growDays>4</growDays>
