@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Temporary HSK white-rose texture variants are kept in the mod's own folder. -->
+  <ThingDef ParentName="SK_DeciduousPlantBase">
+    <defName>Plant_Glowreed</defName>
+    <label>glowreed</label>
+    <description>A bioluminescent aquatic reed that stores daylight and emits a faint glow after dark. More mature plants shine brighter.</description>
+    <thingClass>SK.Plant_Algae</thingClass>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>70</MaxHitPoints>
+      <Beauty>5</Beauty>
+      <BeautyOutdoors>5</BeautyOutdoors>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Plant/Glowreed/Glowreed</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <plant>
+      <!-- Ground is needed by RimWorld's standard crop selector; the patch
+           restricts this plant to Zone_GrowingAlgae. -->
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+      <sowWork>250</sowWork>
+      <harvestYield>0</harvestYield>
+      <fertilityMin>0.01</fertilityMin>
+      <fertilitySensitivity>0.1</fertilitySensitivity>
+      <growDays>5</growDays>
+      <growMinGlow>0.1</growMinGlow>
+      <lifespanDaysPerGrowDays>5</lifespanDaysPerGrowDays>
+      <maxMeshCount>1</maxMeshCount>
+      <visualSizeRange>0.75~1.0</visualSizeRange>
+      <topWindExposure>0.1</topWindExposure>
+    </plant>
+    <comps>
+      <li Class="HSKAlgaeCultivation.CompProperties_Glowreed">
+        <glowRadius>3</glowRadius>
+        <overlightRadius>0</overlightRadius>
+        <glowColor>(32,28,18,0)</glowColor>
+        <chargePerFullDay>3.25</chargePerFullDay>
+        <dischargePerFullNight>1.8</dischargePerFullNight>
+        <dayChargeSkyGlowThreshold>0.2</dayChargeSkyGlowThreshold>
+        <nightSkyGlowThreshold>0.15</nightSkyGlowThreshold>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>
