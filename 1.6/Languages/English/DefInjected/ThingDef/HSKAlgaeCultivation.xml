@@ -2,4 +2,6 @@
 <LanguageData>
   <Plant_WaterLily.label>water lily</Plant_WaterLily.label>
   <Plant_WaterLily.description>A cultivated aquatic flower with broad floating leaves and a pale blossom. It is grown for beauty rather than for food.</Plant_WaterLily.description>
+  <Plant_Glowreed.label>Glowreed</Plant_Glowreed.label>
+  <Plant_Glowreed.description>An alien aquatic reed that stores solar energy during the day and releases a faint bioluminescent glow after dark. Its light becomes stronger as the plant grows and fades as its stored energy is depleted. It is decorative and cannot be harvested.</Plant_Glowreed.description>
 </LanguageData>
