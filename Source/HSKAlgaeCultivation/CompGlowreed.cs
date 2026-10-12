@@ -76,7 +76,7 @@ namespace HSKAlgaeCultivation
             if (map == null)
                 return;
 
-            float skyGlow = Mathf.Clamp01(map.skyManager.CurSkyGlow);
+            float skyGlow = Mathf.Clamp01(SkyManager.CurSkyGlow);
             float elapsedDays = UpdateInterval / TicksPerDay;
 
             // The reed only charges in open sky. Clouds and bad weather lower
@@ -104,7 +104,7 @@ namespace HSKAlgaeCultivation
 
             Plant plant = parent as Plant;
             float growth = plant == null ? 0f : Mathf.Clamp01(plant.Growth);
-            bool night = map.skyManager.CurSkyGlow <= Props.nightSkyGlowThreshold;
+            bool night = SkyManager.CurSkyGlow <= Props.nightSkyGlowThreshold;
             float brightness = night ? growth * Mathf.Clamp01(storedEnergy) : 0f;
 
             // Keep a small nonzero radius to avoid a zero-radius glower. A
