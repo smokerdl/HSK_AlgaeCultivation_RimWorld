@@ -25,5 +25,5 @@
     <li>brrainz.harmony</li>
     <li>notfood.seedsplease</li>
   </loadAfter>
-  <description>RimWorld 1.6 add-on for Hardcore SK. Adds an aquatic crop zone for HSK PlantAlgae and decorative Water Lily. Water Lily uses original local textures and is not harvested when mature. The included RimWorld 1.5 folder and assembly are retained as a frozen legacy snapshot.</description>
+  <description>RimWorld 1.6 add-on for Hardcore SK. Adds an aquatic crop zone for HSK PlantAlgae, decorative Water Lily, and Glowreed. Water Lily and Glowreed use local textures and are not harvested when mature. Glowreed stores daylight energy and emits a weak glow after dark. The included RimWorld 1.5 folder and assembly are retained as a frozen legacy snapshot.</description>
 </ModMetaData>
