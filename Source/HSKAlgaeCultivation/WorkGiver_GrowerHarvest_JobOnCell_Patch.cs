@@ -26,12 +26,16 @@ namespace HSKAlgaeCultivation
             bool forced,
             Plant plant)
         {
+            // Water Lily is decorative and must never receive a harvest job.
+            // Algae and any future harvestable crops continue through the checks below.
+            if (plant == null || plant.def == AlgaeDefOf.Plant_WaterLily)
+                return false;
+
             // Only harvest a plant that matches the zone's selected crop.
             // A different plant should be handled by the sow workgiver as a
             // CutPlant job, while a matching wild plant should be preserved
             // until it becomes harvestable.
             return zone.allowCut &&
-                   plant != null &&
                    plant.def == zone.GetPlantDefToGrow() &&
                    !plant.IsForbidden(pawn) &&
                    plant.HarvestableNow &&

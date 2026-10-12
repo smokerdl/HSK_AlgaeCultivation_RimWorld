@@ -25,5 +25,5 @@
     <li>brrainz.harmony</li>
     <li>notfood.seedsplease</li>
   </loadAfter>
-  <description>RimWorld 1.6 add-on for Hardcore SK. Adds an aquatic crop zone supporting HSK PlantAlgae and Water Lily, with vanilla crop selection, crop-aware cleanup, and optional SeedsPlease integration. Water Lily currently uses local copies of the HSK white-rose textures as placeholders. The included RimWorld 1.5 folder and assembly are retained as a frozen legacy snapshot.</description>
+  <description>RimWorld 1.6 add-on for Hardcore SK. Adds an aquatic crop zone for HSK PlantAlgae and decorative Water Lily. Water Lily uses original local textures and is not harvested when mature. The included RimWorld 1.5 folder and assembly are retained as a frozen legacy snapshot.</description>
 </ModMetaData>

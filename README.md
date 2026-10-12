@@ -7,11 +7,11 @@ An add-on for Hardcore SK (HSK) that adds a dedicated aquatic crop zone for HSK'
 ## Features
 
 - A dedicated aquatic crop zone, labeled **Aquatic Crop Zone** in English and **Водорослевое хозяйство** in Russian, for supported water and marsh terrain.
-- Two supported crops: HSK's `PlantAlgae` and `Plant_WaterLily`.
+- Two supported plants: HSK's `PlantAlgae` and the decorative `Plant_WaterLily`.
 - RimWorld's standard crop selector. With SeedsPlease enabled, the relevant seed items must physically be present on the map for a crop to be offered by the selector.
-- Water Lily has `Beauty=15` and `BeautyOutdoors=15`. Its texture currently uses local copies of the HSK white-rose sprites as placeholders; these will later be replaced with original Water Lily artwork.
+- Water Lily has `Beauty=15` and `BeautyOutdoors=15`, uses original local textures, and is not harvested when mature.
 - Optional SeedsPlease seed definitions for Algae and Water Lily.
-- Crop-aware cleanup, automatic/forced sowing, and harvesting tied to the selected crop.
+- Algae sowing and harvesting with crop-aware cleanup; decorative Water Lily is excluded from harvest jobs.
 
 ## Cleanup and sowing behavior
 
