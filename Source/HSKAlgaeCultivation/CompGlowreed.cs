@@ -130,7 +130,7 @@ namespace HSKAlgaeCultivation
 
             mutable.glowRadius = nextRadius;
             mutable.glowColor = nextColor;
-            map.glowGrid.MarkGlowGridDirty(parent.Position);
+            Find.GlowGrid.MarkGlowGridDirty(parent.Position);
         }
 
         public override void PostExposeData()
