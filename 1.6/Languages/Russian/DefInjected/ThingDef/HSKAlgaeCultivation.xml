@@ -2,4 +2,6 @@
 <LanguageData>
   <Plant_WaterLily.label>водяная лилия</Plant_WaterLily.label>
   <Plant_WaterLily.description>Культурное водное растение с широкими плавающими листьями и светлым цветком. Его выращивают ради красоты, а не ради пищи.</Plant_WaterLily.description>
+  <Plant_Glowreed.label>светокамыш</Plant_Glowreed.label>
+  <Plant_Glowreed.description>Водное биолюминесцентное растение, которое накапливает дневной свет и слабо светится ночью. Чем выше степень роста, тем ярче его свечение.</Plant_Glowreed.description>
 </LanguageData>
