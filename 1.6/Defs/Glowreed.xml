@@ -38,11 +38,10 @@
       <li Class="HSKAlgaeCultivation.CompProperties_Glowreed">
         <glowRadius>3</glowRadius>
         <overlightRadius>0</overlightRadius>
-        <glowColor>(32,28,18,0)</glowColor>
+        <glowColor>(40,180,150,0)</glowColor>
         <chargePerFullDay>3.25</chargePerFullDay>
         <dischargePerFullNight>1.8</dischargePerFullNight>
         <dayChargeSkyGlowThreshold>0.2</dayChargeSkyGlowThreshold>
-        <nightSkyGlowThreshold>0.15</nightSkyGlowThreshold>
       </li>
     </comps>
   </ThingDef>
