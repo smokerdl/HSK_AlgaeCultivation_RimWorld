@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Temporary HSK white-rose copies are stored in this mod's own texture folder. -->
+  <ThingDef ParentName="SK_DeciduousPlantFlowerBase">
+    <defName>Plant_Glowreed</defName>
+    <label>Glowreed</label>
+    <description>An alien aquatic reed that stores solar energy during the day and releases a faint bioluminescent glow after dark. Its light becomes stronger as the plant grows and fades as its stored energy is depleted. It is decorative and cannot be harvested.</description>
+    <thingClass>SK.Plant_Algae</thingClass>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Beauty>5</Beauty>
+      <BeautyOutdoors>5</BeautyOutdoors>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Plant/Glowreed/Glowreed</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <tickerType>Rare</tickerType>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <compClass>HSKAlgaeCultivation.CompGlowreedGlower</compClass>
+        <glowRadius>2.5</glowRadius>
+        <glowColor>(95,220,190,0)</glowColor>
+      </li>
+    </comps>
+    <plant>
+      <!-- Ground is needed by RimWorld's normal crop selector; the mod patch
+           restricts this plant to Zone_GrowingAlgae despite this general tag. -->
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+      <sowWork>300</sowWork>
+      <harvestYield>0</harvestYield>
+      <fertilityMin>0.01</fertilityMin>
+      <fertilitySensitivity>0.1</fertilitySensitivity>
+      <growDays>6</growDays>
+      <growMinGlow>0.3</growMinGlow>
+      <lifespanDaysPerGrowDays>50</lifespanDaysPerGrowDays>
+      <maxMeshCount>1</maxMeshCount>
+      <visualSizeRange>0.7~1.0</visualSizeRange>
+      <topWindExposure>0.1</topWindExposure>
+    </plant>
+  </ThingDef>
+</Defs>
