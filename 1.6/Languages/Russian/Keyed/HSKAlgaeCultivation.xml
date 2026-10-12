@@ -3,4 +3,5 @@
   <HSKAlgaeCultivation_ZoneLabel>Водорослевое хозяйство</HSKAlgaeCultivation_ZoneLabel>
   <HSKAlgaeCultivation_ZoneDesc>Зона для выращивания водорослей HSK и водяной лилии на поддерживаемой водной и болотистой местности. Использует стандартный селектор культур RimWorld и сохраняет растения, совпадающие с выбранной культурой.</HSKAlgaeCultivation_ZoneDesc>
   <HSKAlgaeCultivation_ZoneInspect>Культура: {0}</HSKAlgaeCultivation_ZoneInspect>
+  <HSKAlgaeCultivation_GlowreedCharge>Запас солнечной энергии: {0}%</HSKAlgaeCultivation_GlowreedCharge>
 </LanguageData>
