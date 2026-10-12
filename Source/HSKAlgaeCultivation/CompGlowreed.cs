@@ -25,7 +25,8 @@ namespace HSKAlgaeCultivation
     /// </summary>
     public class CompGlowreed : CompGlower
     {
-        private const int UpdateInterval = 250;
+        // Update every in-game hour to limit glow-grid recalculation costs.
+        private const int UpdateInterval = 2500;
         private const float TicksPerDay = 60000f;
 
         private float storedEnergy;
@@ -114,7 +115,9 @@ namespace HSKAlgaeCultivation
 
             // Radius and color both scale with growth; an empty reserve or
             // daytime sets the color to black so the plant does not emit light.
-            float nextRadius = Mathf.Max(0.5f, maxGlowRadius * growth);
+            float nextRadius = brightness > 0.001f
+                ? Mathf.Max(0.5f, maxGlowRadius * growth)
+                : 0.5f;
             ColorInt nextColor = new ColorInt(
                 Mathf.RoundToInt(unscaledGlowColor.r * brightness),
                 Mathf.RoundToInt(unscaledGlowColor.g * brightness),
