@@ -5,13 +5,11 @@ namespace HSKAlgaeCultivation
 {
     public class CompProperties_Glowreed : CompProperties_Glower
     {
-        // Charge is measured as 0..1. A clear day should usually charge most
-        // of the plant's reserve; a normal night should use most, but not all,
-        // of a full reserve.
+        // Energy is stored as a 0..1 reserve. Charging is scaled by the
+        // current outdoor sky glow; a typical clear day can refill the reserve.
         public float chargePerFullDay = 3.25f;
         public float dischargePerFullNight = 1.8f;
         public float dayChargeSkyGlowThreshold = 0.2f;
-        public float nightSkyGlowThreshold = 0.15f;
 
         public CompProperties_Glowreed()
         {
@@ -20,9 +18,9 @@ namespace HSKAlgaeCultivation
     }
 
     /// <summary>
-    /// Solar-charge storage and night-only light for the decorative Glowreed.
-    /// CompGlower's properties are cloned per instance because GlowGrid reads
-    /// glowRadius/glowColor from the CompProperties object itself.
+    /// Gives a decorative Glowreed a small solar reserve and emits light at night.
+    /// The glower properties are cloned per instance so each plant can update
+    /// its own radius and color as growth and stored energy change.
     /// </summary>
     public class CompGlowreed : CompGlower
     {
@@ -31,18 +29,18 @@ namespace HSKAlgaeCultivation
 
         private float storedEnergy;
         private float maxGlowRadius;
-        private ColorInt unscaledGlowColor = new ColorInt(32, 28, 18, 0);
+        private ColorInt unscaledGlowColor = new ColorInt(40, 180, 150, 0);
 
         public new CompProperties_Glowreed Props => (CompProperties_Glowreed)props;
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            // ThingDef comp properties are shared by instances. Clone them so
-            // each plant can have its own glow radius and color as it grows.
             CompProperties_Glowreed shared = (CompProperties_Glowreed)props;
             maxGlowRadius = shared.glowRadius;
             unscaledGlowColor = shared.glowColor;
 
+            // Def comp properties are shared between plants; runtime glow values
+            // must be private to this plant instance.
             props = new CompProperties_Glowreed
             {
                 compClass = typeof(CompGlowreed),
@@ -51,8 +49,7 @@ namespace HSKAlgaeCultivation
                 glowColor = shared.glowColor,
                 chargePerFullDay = shared.chargePerFullDay,
                 dischargePerFullNight = shared.dischargePerFullNight,
-                dayChargeSkyGlowThreshold = shared.dayChargeSkyGlowThreshold,
-                nightSkyGlowThreshold = shared.nightSkyGlowThreshold
+                dayChargeSkyGlowThreshold = shared.dayChargeSkyGlowThreshold
             };
 
             base.PostSpawnSetup(respawningAfterLoad);
@@ -78,22 +75,30 @@ namespace HSKAlgaeCultivation
 
             float skyGlow = Mathf.Clamp01(SkyManager.CurSkyGlow);
             float elapsedDays = UpdateInterval / TicksPerDay;
+            bool night = IsNight(map);
 
-            // The reed only charges in open sky. Clouds and bad weather lower
-            // the amount gathered because charging follows the current sky glow.
-            if (!map.roofGrid.Roofed(parent.Position) &&
+            // The plant only charges during daytime when exposed to open sky.
+            // Heavy cloud cover reduces charging through the current sky-glow value.
+            if (!night &&
+                !map.roofGrid.Roofed(parent.Position) &&
                 skyGlow >= Props.dayChargeSkyGlowThreshold)
             {
                 storedEnergy = Mathf.Min(
                     1f,
                     storedEnergy + Props.chargePerFullDay * skyGlow * elapsedDays);
             }
-            else if (skyGlow <= Props.nightSkyGlowThreshold)
+            else if (night)
             {
                 storedEnergy = Mathf.Max(
                     0f,
                     storedEnergy - Props.dischargePerFullNight * elapsedDays);
             }
+        }
+
+        private static bool IsNight(Map map)
+        {
+            int hour = GenLocalDate.HourOfDay(map);
+            return hour < 6 || hour >= 18;
         }
 
         private void RefreshGlow(bool force)
@@ -104,15 +109,11 @@ namespace HSKAlgaeCultivation
 
             Plant plant = parent as Plant;
             float growth = plant == null ? 0f : Mathf.Clamp01(plant.Growth);
-            bool night = SkyManager.CurSkyGlow <= Props.nightSkyGlowThreshold;
-            float brightness = night ? growth * Mathf.Clamp01(storedEnergy) : 0f;
+            float brightness = IsNight(map) ? growth * Mathf.Clamp01(storedEnergy) : 0f;
 
-            // Keep a small nonzero radius to avoid a zero-radius glower. A
-            // zero color disables the light until it is dark and charged.
-            float nextRadius = brightness > 0.001f
-                ? Mathf.Max(0.5f, maxGlowRadius * growth)
-                : 0.5f;
-
+            // Radius and color both scale with growth; an empty reserve or
+            // daytime sets the color to black so the plant does not emit light.
+            float nextRadius = Mathf.Max(0.5f, maxGlowRadius * growth);
             ColorInt nextColor = new ColorInt(
                 Mathf.RoundToInt(unscaledGlowColor.r * brightness),
                 Mathf.RoundToInt(unscaledGlowColor.g * brightness),
