@@ -75,7 +75,7 @@ namespace HSKAlgaeCultivation
             if (map == null)
                 return;
 
-            float skyGlow = Mathf.Clamp01(SkyManager.CurSkyGlow);
+            float skyGlow = Mathf.Clamp01(map.skyManager.CurSkyGlow);
             float elapsedDays = UpdateInterval / TicksPerDay;
             bool night = IsNight(map);
 
@@ -134,7 +134,7 @@ namespace HSKAlgaeCultivation
 
             mutable.glowRadius = nextRadius;
             mutable.glowColor = nextColor;
-            map.glowGrid.MarkGlowGridDirty(parent.Position);
+            map.glowGrid.DirtyCell(parent.Position);
         }
 
         public override void PostExposeData()

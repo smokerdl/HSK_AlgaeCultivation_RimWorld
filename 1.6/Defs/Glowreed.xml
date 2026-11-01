@@ -5,15 +5,18 @@
     <defName>Plant_Glowreed</defName>
     <label>glowreed</label>
     <description>A bioluminescent aquatic reed that stores daylight and emits a faint glow after dark. More mature plants shine brighter.</description>
-    <thingClass>SK.Plant_Algae</thingClass>
+    <thingClass>HSKAlgaeCultivation.Plant_Glowreed</thingClass>
     <selectable>true</selectable>
     <statBases>
       <MaxHitPoints>70</MaxHitPoints>
       <Beauty>5</Beauty>
       <BeautyOutdoors>5</BeautyOutdoors>
     </statBases>
+	<ingestible>
+      <preferability>NeverForNutrition</preferability>
+    </ingestible>
     <graphicData>
-      <texPath>Things/Plant/Glowreed/Glowreed</texPath>
+      <texPath>Things/Plant/Glowreed</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <tickerType>Normal</tickerType>
@@ -30,7 +33,7 @@
       <growDays>5</growDays>
       <growMinGlow>0.1</growMinGlow>
       <lifespanDaysPerGrowDays>5</lifespanDaysPerGrowDays>
-      <maxMeshCount>1</maxMeshCount>
+      <maxMeshCount>4</maxMeshCount>
       <visualSizeRange>0.75~1.0</visualSizeRange>
       <topWindExposure>0.1</topWindExposure>
     </plant>
