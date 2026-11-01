@@ -32,5 +32,9 @@
       <HintPath>$(HarmonyPath)</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="Core_SK">
+      <HintPath>$(RimWorldDir)\Mods\Core_SK\Assemblies\Core_SK.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ namespace HSKAlgaeCultivation
     {
         public static ThingDef PlantAlgae;
         public static ThingDef Plant_WaterLily;
+        public static ThingDef Plant_Glowreed;
 
         static AlgaeDefOf()
         {

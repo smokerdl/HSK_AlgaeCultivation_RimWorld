@@ -54,7 +54,8 @@ namespace HSKAlgaeCultivation
         {
             return plantDef != null &&
                    (plantDef == AlgaeDefOf.PlantAlgae ||
-                    plantDef == AlgaeDefOf.Plant_WaterLily);
+                    plantDef == AlgaeDefOf.Plant_WaterLily ||
+                    plantDef == AlgaeDefOf.Plant_Glowreed);
         }
 
         public override string GetInspectString()

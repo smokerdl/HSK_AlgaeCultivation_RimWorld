@@ -1,17 +1,18 @@
 # HSK Algae Cultivation
 
-An add-on for Hardcore SK (HSK) that adds a dedicated aquatic crop zone for HSK's Algae and Water Lily in RimWorld 1.6.
+An add-on for Hardcore SK (HSK) that adds a dedicated aquatic crop zone for HSK's Algae and two new aquatic plants in RimWorld 1.6.
 
 **Version support:** active development targets RimWorld 1.6. The included RimWorld 1.5 folder and assembly remain a frozen legacy snapshot.
 
 ## Features
 
 - A dedicated aquatic crop zone, labeled **Aquatic Crop Zone** in English and **Водорослевое хозяйство** in Russian, for supported water and marsh terrain.
-- Two supported plants: HSK's `PlantAlgae` and the decorative `Plant_WaterLily`.
+- Three supported plants: HSK's `PlantAlgae`, decorative `Plant_WaterLily`, and `Plant_Glowreed`.
 - RimWorld's standard crop selector. With SeedsPlease enabled, the relevant seed items must physically be present on the map for a crop to be offered by the selector.
 - Water Lily has `Beauty=15` and `BeautyOutdoors=15`, uses original local textures, and is not harvested when mature.
-- Optional SeedsPlease seed definitions for Algae and Water Lily.
-- Algae sowing and harvesting with crop-aware cleanup; decorative Water Lily is excluded from harvest jobs.
+- Glowreed absorbs daylight when exposed to the open sky, stores a limited energy reserve, and emits a weak light at night. Its light intensity and radius depend on plant growth. It is decorative and is not harvested.
+- Optional SeedsPlease seed definitions for Algae, Water Lily, and Glowreed.
+- Algae sowing and harvesting with crop-aware cleanup; the two decorative plants are excluded from harvest jobs.
 
 ## Cleanup and sowing behavior
 
@@ -33,6 +34,6 @@ Keep the `1.5` and `1.6` folders intact. The `1.5` files are kept for legacy pur
 
 New development targets RimWorld 1.6. To rebuild after changing C# code, run `Source/Build.bat` from the repository root on Windows. Set `RIMWORLD_DIR` to the game installation and `RIMWORLD_VERSION=1.6`. If needed, specify the Harmony assembly path with `HARMONY_PATH`.
 
-The build and gameplay tests are important: the repository's GitHub Actions checks XML syntax, required files, and localization keys, but does not compile C# or launch RimWorld.
+The build and gameplay tests are important: the repository's GitHub Actions checks XML, required files, and localization keys, but does not compile C# or launch RimWorld.
 
 For the Russian guide, see [README_RU.md](README_RU.md).
